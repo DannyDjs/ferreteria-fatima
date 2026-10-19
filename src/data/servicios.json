@@ -1,5 +1,5 @@
 {
-  "_nota": "Servicios industriales. 'capacidades' contiene solo datos confirmados por la empresa (oct. 2026). 'imagen' (opcional): foto real en /assets/img/servicios/, reemplaza la ilustración.",
+  "_nota": "Servicios industriales. 'capacidades' contiene solo datos confirmados por la empresa (oct. 2026). 'imagen': foto en /assets/img/servicios/. Las actuales son fotos genéricas de Pexels (licencia libre) marcadas con 'imagenIlustrativa': true; al poner fotos reales del taller, cambiar a false para quitar la etiqueta 'Imagen de referencia'.",
   "servicios": [
     {
       "slug": "roscado-de-tuberia",
@@ -34,7 +34,10 @@
           "etiqueta": "Espesor mínimo",
           "valor": "Galvanizada tipo pesado. En tubería más delgada no se hace roscado porque las roscas se dañan."
         }
-      ]
+      ],
+      "imagen": "/assets/img/servicios/roscado.webp",
+      "imagenAlt": "Montaje de tubería metálica con uniones roscadas",
+      "imagenIlustrativa": true
     },
     {
       "slug": "ranurado-de-tuberia",
@@ -65,7 +68,10 @@
           "etiqueta": "Tubería que se ranura",
           "valor": "Acero al carbón clase 10 y clase 40; galvanizada tipo pesado; acero inoxidable (consultar)"
         }
-      ]
+      ],
+      "imagen": "/assets/img/servicios/ranurado.webp",
+      "imagenAlt": "Red de tubería contra incendio, un uso típico de la tubería ranurada",
+      "imagenIlustrativa": true
     },
     {
       "slug": "corte-de-materiales",
@@ -91,7 +97,10 @@
           "etiqueta": "Capacidad de la máquina",
           "valor": "Desde las medidas más pequeñas hasta 8\" de diámetro"
         }
-      ]
+      ],
+      "imagen": "/assets/img/servicios/corte.webp",
+      "imagenAlt": "Máquina de corte de tubería en un taller",
+      "imagenIlustrativa": true
     }
   ]
 }

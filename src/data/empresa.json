@@ -98,7 +98,7 @@
     "Catálogo: todas las líneas de producto son genéricas; faltan referencias, marcas, medidas y fotografías reales.",
     "Dominio ferreteriafatima.com: confirmar que es el dominio definitivo (se usa en canonical, sitemap y datos estructurados).",
     "Correo: se usa provisionalmente dannyramirezch73@gmail.com; cambiarlo en empresa.json → \"correo\" cuando exista el correo de la empresa.",
-    "Servicios: falta confirmar tiempos de entrega; agregar fotos reales de roscado, ranurado y corte (servicios.json → \"imagen\").",
+    "Servicios: falta confirmar tiempos de entrega; reemplazar las fotos genéricas de roscado, ranurado y corte por fotos reales del taller (servicios.json).",
     "Homenaje: confirmar con la familia que aprueba la frase publicada en Nosotros."
   ],
   "homenaje": {

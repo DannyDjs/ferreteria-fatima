@@ -585,3 +585,4 @@
 .map--foto .map__address, .map--foto .map__note { color: var(--on-dark-strong); }
 .map--foto.is-loaded::after, .map--foto.is-loaded .map__bg { display: none; }
 .map iframe { z-index: 2; }
+.service__tag { position: absolute; top: 14px; right: 14px; z-index: 2; padding: 4px 10px; border-radius: 999px; background: rgba(0, 18, 42, 0.8); color: var(--on-dark-strong); font-size: 0.75rem; }

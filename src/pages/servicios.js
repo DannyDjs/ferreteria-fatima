@@ -23,6 +23,7 @@ ${cabeceraPagina({
       <div class="service__visual${s.imagen ? ' service__visual--foto' : ''}"${s.imagen ? '' : html` aria-hidden="true"`}>
         ${s.imagen ? html`<img class="service__photo" src="${s.imagen}" alt="${s.imagenAlt || s.nombre}" width="800" height="600" loading="lazy">` : ''}
         <span class="service__num" aria-hidden="true">0${i + 1}</span>
+        ${s.imagen && s.imagenIlustrativa ? html`<span class="service__tag">Imagen de referencia</span>` : ''}
         ${s.imagen ? '' : icono(s.icono, 'service__icon')}
       </div>
       <div class="service__content">
