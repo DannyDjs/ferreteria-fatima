@@ -20,10 +20,10 @@ ${cabeceraPagina({
 <div class="services">
   ${lista.map((s, i) => html`<section class="service${i % 2 ? ' service--alt' : ''}" id="${s.slug}" aria-labelledby="${s.slug}-titulo">
     <div class="container service__grid">
-      <div class="service__visual" aria-hidden="true">
-        ${s.imagen
-          ? html`<img class="service__photo" src="${s.imagen}" alt="${s.imagenAlt || s.nombre}" width="800" height="600" loading="lazy">`
-          : html`<span class="service__num">0${i + 1}</span>${icono(s.icono, 'service__icon')}`}
+      <div class="service__visual${s.imagen ? ' service__visual--foto' : ''}"${s.imagen ? '' : html` aria-hidden="true"`}>
+        ${s.imagen ? html`<img class="service__photo" src="${s.imagen}" alt="${s.imagenAlt || s.nombre}" width="800" height="600" loading="lazy">` : ''}
+        <span class="service__num" aria-hidden="true">0${i + 1}</span>
+        ${s.imagen ? '' : icono(s.icono, 'service__icon')}
       </div>
       <div class="service__content">
         <p class="eyebrow">Servicio 0${i + 1}</p>

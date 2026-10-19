@@ -559,7 +559,11 @@
 .error-page__title { font-size: var(--fs-h2); margin: 12px 0 14px; }
 .error-page__inner > p { color: var(--gray-600); margin-bottom: 28px; }
 .error-page__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; margin-top: 28px; }
-.service__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2; }
+/* Con foto real: la foto llena el recuadro y encima quedan el tono azul, el número y la franja turquesa de la marca. */
+.service__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.service__visual--foto::before { right: auto; left: 0; width: 100%; transform: none; background: linear-gradient(160deg, rgba(0, 26, 53, 0.55), rgba(0, 26, 53, 0.05) 55%); z-index: 1; }
+.service__visual--foto::after { z-index: 2; }
+.service__visual--foto .service__num { z-index: 2; color: var(--white); }
 .service__specs-title { margin-top: 28px; }
 .service .spec-table { margin-top: 0; }
 .about__homenaje { margin-top: 24px; padding-left: 16px; border-left: 3px solid var(--teal-500); font-style: italic; color: var(--gray-600) !important; }
