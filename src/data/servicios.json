@@ -1,0 +1,97 @@
+{
+  "_nota": "Servicios industriales. 'capacidades' contiene solo datos confirmados por la empresa (oct. 2026). 'imagen' (opcional): foto real en /assets/img/servicios/, reemplaza la ilustración.",
+  "servicios": [
+    {
+      "slug": "roscado-de-tuberia",
+      "nombre": "Roscado de tubería",
+      "icono": "rosca",
+      "resumen": "Roscado de tubería para uniones con accesorios roscados.",
+      "descripcion": "Realizamos el roscado de tubería para que pueda unirse con accesorios y válvulas roscadas. Puede solicitar el servicio para tubería comprada en nuestra ferretería o consultar las condiciones para tubería suministrada por usted.",
+      "aplicaciones": [
+        "Redes de agua y fluidos con conexiones roscadas",
+        "Instalaciones de gas que usan accesorios roscados",
+        "Montaje y reparación de redes industriales"
+      ],
+      "datosParaCotizar": [
+        "Material y diámetro de la tubería",
+        "Número de roscas o de tramos",
+        "Si la tubería la suministra la ferretería o el cliente"
+      ],
+      "capacidades": [
+        {
+          "etiqueta": "Tipo de rosca",
+          "valor": "NPT"
+        },
+        {
+          "etiqueta": "Diámetros",
+          "valor": "1/4\", 3/8\", 1/2\", 3/4\", 1\", 1-1/4\", 1-1/2\", 2\", 2-1/2\", 3\" y 4\""
+        },
+        {
+          "etiqueta": "Tubería que se rosca",
+          "valor": "Galvanizada tipo pesado; acero al carbón clase 40, 80 y 160; acero inoxidable clase 40"
+        },
+        {
+          "etiqueta": "Espesor mínimo",
+          "valor": "Galvanizada tipo pesado. En tubería más delgada no se hace roscado porque las roscas se dañan."
+        }
+      ]
+    },
+    {
+      "slug": "ranurado-de-tuberia",
+      "nombre": "Ranurado de tubería",
+      "icono": "ranura",
+      "resumen": "Ranurado de tubería para sistemas de acople ranurado.",
+      "descripcion": "Preparamos la tubería con ranura para su instalación con acoples ranurados, un sistema de unión que facilita el montaje y el mantenimiento de redes.",
+      "aplicaciones": [
+        "Sistemas de tubería con acoples ranurados",
+        "Redes contra incendio que usan unión ranurada",
+        "Redes industriales de montaje rápido"
+      ],
+      "datosParaCotizar": [
+        "Material, diámetro y clase de la tubería",
+        "Cantidad de ranuras o de tramos",
+        "Si la tubería la suministra la ferretería o el cliente"
+      ],
+      "capacidades": [
+        {
+          "etiqueta": "Diámetros",
+          "valor": "Desde 1-1/4\" hasta 6\""
+        },
+        {
+          "etiqueta": "Clases de tubería",
+          "valor": "Clase 10 y clase 40"
+        },
+        {
+          "etiqueta": "Tubería que se ranura",
+          "valor": "Acero al carbón clase 10 y clase 40; galvanizada tipo pesado; acero inoxidable (consultar)"
+        }
+      ]
+    },
+    {
+      "slug": "corte-de-materiales",
+      "nombre": "Corte de materiales",
+      "icono": "corte",
+      "resumen": "Corte de tubería y materiales a la medida que necesita.",
+      "descripcion": "Cortamos tubería y materiales a la medida requerida para su proyecto. Consulte qué materiales y dimensiones podemos procesar y en qué condiciones.",
+      "aplicaciones": [
+        "Tramos de tubería a medida",
+        "Material listo para montaje o fabricación"
+      ],
+      "datosParaCotizar": [
+        "Material y presentación",
+        "Medidas finales y número de cortes",
+        "Si el material lo suministra la ferretería o el cliente"
+      ],
+      "capacidades": [
+        {
+          "etiqueta": "Materiales",
+          "valor": "Tubería y aceros"
+        },
+        {
+          "etiqueta": "Capacidad de la máquina",
+          "valor": "Desde las medidas más pequeñas hasta 8\" de diámetro"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+// Publicación en Cloudflare Workers (archivos estáticos). Solo se publica dist/.
+{
+  "name": "ferreteria-fatima",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

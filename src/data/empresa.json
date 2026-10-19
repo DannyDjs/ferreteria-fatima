@@ -1,0 +1,109 @@
+{
+  "_nota": "Datos comerciales usados en todo el sitio. Los campos listados en 'pendientes' deben verificarse con la empresa antes de publicar. Fuente inicial: sitio web anterior (PAGINA FERRETERIA) y plantilla de cotización.",
+  "nombre": "Ferretería Fátima",
+  "eslogan": "Soluciones en ferretería e industria",
+  "sitioUrl": "https://ferreteriafatima.com",
+  "nit": "5.203.413-9",
+  "anioFundacion": 1942,
+  "fundador": "Edgar Arteaga",
+  "historia": "Ferretería Fátima nació por iniciativa de Edgar Arteaga, con una idea sencilla: que los vecinos, maestros de obra y trabajadores de Pasto encontraran cerca los materiales que necesitaban para construir y reparar, con una atención honesta y de confianza.",
+  "trayectoria": "Con los años, la ferretería creció junto con sus clientes. A la atención del barrio se sumaron empresas, talleres y contratistas de la región, y a la venta de materiales se sumaron líneas industriales y servicios de roscado, ranurado y corte de tubería. Hoy seguimos trabajando con la misma cercanía con la que empezamos.",
+  "mision": "Brindar soluciones en ferretería e industria, con productos de calidad y servicios confiables, para que nuestros clientes puedan construir, reparar y mantener sus proyectos con éxito.",
+  "vision": "Ser la ferretería de referencia en Pasto y la región, reconocida por la calidad de nuestros productos, la confiabilidad de nuestros servicios y la cercanía con nuestros clientes.",
+  "direccion": {
+    "calle": "Calle 18 # 11-06",
+    "barrio": "Fátima",
+    "ciudad": "Pasto",
+    "departamento": "Nariño",
+    "pais": "Colombia",
+    "codigoPais": "CO"
+  },
+  "geo": {
+    "lat": 1.2023827,
+    "lng": -77.2722321
+  },
+  "mapaUrl": "https://maps.app.goo.gl/LRBaQTzCHE3ezN7RA",
+  "mapaEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1993.7!2d-77.2722321!3d1.2023827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e2ed4964adb2267%3A0xcbdeeb59d42dc0b6!2sFerreter%C3%ADa%20F%C3%A1tima!5e0!3m2!1ses-419!2sco!4v1760700000000!5m2!1ses-419!2sco",
+  "telefonos": {
+    "celular": {
+      "visible": "315 486 4439",
+      "e164": "+573154864439"
+    }
+  },
+  "whatsapp": {
+    "numero": "573154864439",
+    "visible": "315 486 4439",
+    "mensajeInicial": "Hola, Ferretería Fátima. Quisiera información sobre sus productos."
+  },
+  "correo": "ferreteriafatima@gmail.com",
+  "redes": {
+    "facebook": "https://www.facebook.com/share/1AMtJd7b8d/"
+  },
+  "horario": [
+    {
+      "dias": "Lunes a viernes",
+      "horas": "8:00 a. m. – 12:00 m. y 2:00 p. m. – 6:00 p. m.",
+      "schema": [
+        [
+          "Mo",
+          "Tu",
+          "We",
+          "Th",
+          "Fr"
+        ],
+        "08:00",
+        "12:00"
+      ],
+      "schema2": [
+        [
+          "Mo",
+          "Tu",
+          "We",
+          "Th",
+          "Fr"
+        ],
+        "14:00",
+        "18:00"
+      ]
+    },
+    {
+      "dias": "Sábados",
+      "horas": "8:00 a. m. – 1:00 p. m. (jornada continua)",
+      "schema": [
+        [
+          "Sa"
+        ],
+        "08:00",
+        "13:00"
+      ]
+    },
+    {
+      "dias": "Festivos",
+      "horas": "8:00 a. m. – 12:00 m."
+    },
+    {
+      "dias": "Domingos",
+      "horas": "Cerrado"
+    }
+  ],
+  "formularios": {
+    "_nota": "Endpoint público de Formspree (no es un secreto). Se puede reemplazar al compilar con la variable de entorno FORM_ENDPOINT.",
+    "endpoint": "https://formspree.io/f/mvgqjrvb"
+  },
+  "pendientes": [
+    "Fotografía de la fachada: confirmar que corresponde a la apariencia actual de la sede (el sitio anterior tenía dos versiones).",
+    "Endpoint de Formspree (mvgqjrvb): confirmar a qué correo llegan las solicitudes y que la cuenta siga activa.",
+    "Años de experiencia: el sitio anterior decía 'más de 20 años'; no se publica hasta confirmarlo.",
+    "NIT 5.203.413-9: tomado de la plantilla de cotización; confirmar razón social del responsable del tratamiento de datos.",
+    "Catálogo: todas las líneas de producto son genéricas; faltan referencias, marcas, medidas y fotografías reales.",
+    "Dominio ferreteriafatima.com: confirmar que es el dominio definitivo (se usa en canonical, sitemap y datos estructurados).",
+    "Correo: se usa provisionalmente dannyramirezch73@gmail.com; cambiarlo en empresa.json → \"correo\" cuando exista el correo de la empresa.",
+    "Servicios: falta confirmar tiempos de entrega; agregar fotos reales de roscado, ranurado y corte (servicios.json → \"imagen\").",
+    "Homenaje: confirmar con la familia que aprueba la frase publicada en Nosotros."
+  ],
+  "homenaje": {
+    "_nota": "Homenaje discreto en Nosotros. Se publica solo cuando 'nombre' tiene valor. 'texto' (opcional) reemplaza la frase por defecto; escriba {nombre} donde debe ir el nombre.",
+    "nombre": "Edgar Arteaga",
+    "texto": null
+  }
+}

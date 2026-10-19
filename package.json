@@ -1,0 +1,17 @@
+{
+  "name": "ferreteria-fatima-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio web multipágina de Ferretería Fátima (Pasto, Nariño): catálogo, servicios industriales y solicitudes de cotización.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node scripts/serve.js --watch",
+    "build": "node scripts/build.js",
+    "start": "node scripts/build.js && node scripts/serve.js",
+    "test": "node scripts/build.js && node --test \"tests/*.test.js\"",
+    "deploy": "node scripts/build.js && npx wrangler deploy"
+  }
+}
