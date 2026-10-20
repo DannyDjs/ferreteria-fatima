@@ -70,15 +70,20 @@ export function pareceSpam(form, cargadoEn) {
   return Boolean(trampa && trampa.value) || Date.now() - cargadoEn < 3000;
 }
 
-/** Envía los datos al servicio de formularios (Formspree) y lanza un error legible si falla. */
+/**
+ * Envía los datos al servicio que recibe las solicitudes y lanza un error legible si falla.
+ * Google Apps Script (script.google.com): JSON como texto plano (evita la consulta previa CORS que Apps Script
+ * no atiende) y respuesta { ok, error }. Formspree: JSON normal.
+ */
 export async function enviar(endpoint, datos, { tiempoMaximo = 20000 } = {}) {
+  const appsScript = /^https:\/\/script\.google\.com\//.test(endpoint);
   const control = new AbortController();
   const temporizador = setTimeout(() => control.abort(), tiempoMaximo);
   let respuesta;
   try {
     respuesta = await fetch(endpoint, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      headers: appsScript ? { 'Content-Type': 'text/plain;charset=utf-8' } : { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify(datos),
       signal: control.signal,
     });
@@ -96,6 +101,11 @@ export async function enviar(endpoint, datos, { tiempoMaximo = 20000 } = {}) {
       detalle = (cuerpo.errors || []).map((e) => e.message).join(' ');
     } catch { /* respuesta sin JSON */ }
     throw new Error(detalle || `El servicio de formularios respondió con un error (${respuesta.status}).`);
+  }
+  if (appsScript) {
+    let cuerpo;
+    try { cuerpo = await respuesta.json(); } catch { throw new Error('El servicio de formularios dio una respuesta inesperada.'); }
+    if (!cuerpo.ok) throw new Error(cuerpo.error || 'El servicio de formularios rechazó la solicitud.');
   }
   return true;
 }

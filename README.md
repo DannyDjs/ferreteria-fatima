@@ -135,7 +135,7 @@ configurarla y usarla: **[docs/catalogo-google-sheets.md](docs/catalogo-google-s
 
 | Integración | Estado | Configuración |
 |---|---|---|
-| **Formspree** (formulario de cotización) | Endpoint del sitio anterior `https://formspree.io/f/mvgqjrvb`. El 17-10-2026 se envió una solicitud real marcada PRUEBA (código SOL-261014-V8HE) y Formspree respondió HTTP 200. Las solicitudes llegan **al correo de la cuenta de Formspree dueña de ese formulario**. | En <https://formspree.io>, entrar a la cuenta dueña del formulario, confirmar el correo de destino y hacer un envío de prueba desde `/cotizar/`. Para usar otro formulario: `FORM_ENDPOINT` o `empresa.json`. |
+| **Solicitudes de cotización** | Hoy: Formspree (`https://formspree.io/f/mvgqjrvb`). Listo para pasar a **Google Apps Script** (hoja privada «Solicitudes» + correo, sin Formspree ni límite mensual). | Guía: [docs/solicitudes-google.md](docs/solicitudes-google.md). Al terminar, poner la URL `https://script.google.com/macros/s/.../exec` en `empresa.json → "formularios" → "endpoint"`. |
 | **WhatsApp** (`wa.me/573154864439`) | Funcional. Mensajes codificados con `encodeURIComponent`. | Cambiar el número en `empresa.json → whatsapp.numero` (formato internacional sin `+`). |
 | **Google Maps** | Se carga solo si la persona pulsa «Ver mapa aquí» (privacidad y rendimiento). | `empresa.json → mapaEmbed` y `mapaUrl`. |
 | **Facebook** | Enlace en el pie. | `empresa.json → redes.facebook`. |

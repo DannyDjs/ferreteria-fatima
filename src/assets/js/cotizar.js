@@ -174,6 +174,7 @@ if (form) {
         observaciones: d.observaciones || '—',
         autoriza_tratamiento_datos: `Sí (${new Date().toISOString()})`,
         origen: location.href,
+        _gotcha: form.querySelector('[name="_gotcha"]')?.value || '',
       });
       solicitud.vaciar();
       mostrarExito(d);

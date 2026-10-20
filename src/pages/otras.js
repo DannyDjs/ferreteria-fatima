@@ -90,7 +90,9 @@ function privacidad(ctx) {
 
     <h2>4. Terceros que intervienen</h2>
     <ul>
-      <li><strong>Formspree</strong>: servicio que recibe los formularios del sitio y los reenvía a nuestro equipo. Sus servidores pueden estar fuera de Colombia, por lo que el envío implica una transmisión internacional de datos.</li>
+      ${/^https:\/\/script\.google\.com\//.test(ctx.formEndpoint)
+        ? html`<li><strong>Google</strong> (Google Sheets y Gmail): reciben y almacenan las solicitudes enviadas desde el sitio en la cuenta de la empresa. Sus servidores pueden estar fuera de Colombia, por lo que el envío implica una transmisión internacional de datos.</li>`
+        : html`<li><strong>Formspree</strong>: servicio que recibe los formularios del sitio y los reenvía a nuestro equipo. Sus servidores pueden estar fuera de Colombia, por lo que el envío implica una transmisión internacional de datos.</li>`}
       <li><strong>WhatsApp</strong>: si usted elige escribirnos por WhatsApp, la conversación se rige también por las condiciones de ese servicio.</li>
       <li><strong>Google Maps</strong>: el mapa de la página de contacto solo se carga si usted lo solicita; en ese momento Google puede recibir datos de navegación.</li>
       <li><strong>Proveedor de alojamiento</strong> del sitio web, que procesa datos técnicos de conexión (como la dirección IP) para entregar las páginas.</li>

@@ -89,12 +89,12 @@
     }
   ],
   "formularios": {
-    "_nota": "Endpoint público de Formspree (no es un secreto). Se puede reemplazar al compilar con la variable de entorno FORM_ENDPOINT.",
+    "_nota": "Dirección que recibe las solicitudes de cotización. Actual: Formspree (provisional). Para usar Google (hoja privada + correo, sin Formspree) siga docs/solicitudes-google.md y pegue aquí la URL de la aplicación web (https://script.google.com/macros/s/.../exec).",
     "endpoint": "https://formspree.io/f/mvgqjrvb"
   },
   "pendientes": [
     "Fotografía de la fachada: confirmar que corresponde a la apariencia actual de la sede (el sitio anterior tenía dos versiones).",
-    "Endpoint de Formspree (mvgqjrvb): confirmar a qué correo llegan las solicitudes y que la cuenta siga activa.",
+    "Solicitudes: instalar el script de Google (docs/solicitudes-google.md) y poner su URL en formularios.endpoint; mientras tanto siguen llegando por Formspree.",
     "Años de experiencia: el sitio anterior decía 'más de 20 años'; no se publica hasta confirmarlo.",
     "NIT 5.203.413-9: tomado de la plantilla de cotización; confirmar razón social del responsable del tratamiento de datos.",
     "Catálogo: se carga desde la hoja (Google Sheets). Hay productos con «Publicar: No» porque el documento los marcó como pendientes de identificar; confirmarlos y faltan fotos reales.",
