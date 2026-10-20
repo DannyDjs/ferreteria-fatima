@@ -36,6 +36,8 @@
     "mensajeInicial": "Hola, Ferretería Fátima. Quisiera información sobre sus productos."
   },
   "correo": "ferreteriafatima@gmail.com",
+  "_mostrarPrecio": "true = muestra la fila 'Precio' (Consultar precio) en las fichas de producto; false = la oculta.",
+  "mostrarPrecio": false,
   "redes": {
     "facebook": "https://www.facebook.com/share/1AMtJd7b8d/"
   },

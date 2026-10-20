@@ -139,7 +139,7 @@ function paginaProducto(ctx, p) {
           ${filaDato('Referencia', p.referencia)}
           ${filaDato('Marca', p.marca)}
           ${filaDato('Medida / presentación', p.unidad)}
-          ${filaDato('Precio', p.precio ? p.precio : html`<span class="muted">Consultar precio</span>`)}
+          ${ctx.empresa.mostrarPrecio ? filaDato('Precio', p.precio ? p.precio : html`<span class="muted">Consultar precio</span>`) : ''}
           ${(p.especificaciones || []).map((s) => filaDato(s.etiqueta, s.valor))}
         </dl>
         <div class="product-detail__actions">

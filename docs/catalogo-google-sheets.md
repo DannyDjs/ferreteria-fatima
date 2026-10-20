@@ -1,7 +1,8 @@
 # Catálogo de productos en Google Sheets
 
 El catálogo de la página web se edita en una hoja de Google Sheets. No hay que tocar código:
-lo que se cambia en la hoja aparece en la página en **una hora como máximo**.
+lo que se cambia en la hoja aparece en la página en **2 a 3 minutos** con el botón «Publicar cambios»,
+o sola en **una hora como máximo**.
 
 ## A. Configuración inicial (una sola vez)
 
@@ -13,22 +14,25 @@ lo que se cambia en la hoja aparece en la página en **una hora como máximo**.
 4. En «Ubicación de importación» elija **Reemplazar hoja actual** y pulse **Importar datos**.
 5. Recomendado: **Ver → Inmovilizar → 1 fila**, para que los títulos de las columnas queden siempre visibles.
 
-### 2. Publicar la hoja como CSV
+### 2. Obtener el enlace de la hoja en formato CSV
 
-1. Menú **Archivo → Compartir → Publicar en la Web**.
-2. En la primera lista elija la pestaña de la hoja (por ejemplo «Hoja 1»), no «Todo el documento».
-3. En la segunda lista elija **Valores separados por comas (.csv)**.
-4. Pulse **Publicar** y confirme.
-5. **Copie el enlace** que aparece (empieza por `https://docs.google.com/spreadsheets/d/e/...` y termina en `output=csv`).
+1. Botón **Compartir** (arriba a la derecha) → en «Acceso general» elija **Cualquier persona con el enlace** → rol **Lector** → **Listo**.
+2. Copie la dirección de la hoja desde la barra del navegador. Se ve así:
+   `https://docs.google.com/spreadsheets/d/`**`1AbC...xyz`**`/edit#gid=`**`0`**
+3. Arme el enlace CSV con esas dos partes (el código largo y el número después de `gid=`):
+   `https://docs.google.com/spreadsheets/d/1AbC...xyz/export?format=csv&gid=0`
+4. Pruébelo: al pegarlo en el navegador debe descargarse un archivo `.csv`.
 
-> El enlace publicado es público: cualquiera que lo tenga puede ver la hoja. No escriba en ella
-> costos, precios internos ni datos privados (tampoco en «Notas internas»).
+> Cualquiera que tenga el enlace puede **ver** la hoja (no editarla). No escriba en ella costos,
+> precios internos ni datos privados (tampoco en «Notas internas»).
+> Se usa este enlace y no «Publicar en la Web» porque siempre entrega los datos al instante;
+> «Publicar en la Web» puede tardar hasta 5 minutos en reflejar los cambios.
 
 ### 3. Conectar la hoja con la página (en GitHub)
 
 1. Abra <https://github.com/DannyDjs/ferreteria-fatima> → **Settings**.
 2. Menú izquierdo: **Secrets and variables → Actions** → pestaña **Variables** → **New repository variable**.
-3. **Name:** `CATALOGO_CSV_URL` · **Value:** el enlace copiado en el paso 2 → **Add variable**.
+3. **Name:** `CATALOGO_CSV_URL` · **Value:** el enlace CSV del paso 2 → **Add variable**.
 4. Vaya a **Actions → Publicar en GitHub Pages → Run workflow → Run workflow** para publicar ya.
 
 Desde ese momento la página toma los productos de la hoja.
@@ -78,7 +82,7 @@ Para una categoría nueva hay que pedírsela al desarrollador (lleva ícono y te
 - **Ocultar un producto** (agotado, descontinuado): ponga **No** en «Publicar». No hace falta borrarlo.
 - **Publicar un pendiente:** cuando se confirme, corrija el nombre y cambie «Publicar» a **Sí**.
 - **Poner foto con Google Drive:** suba la foto a Drive → clic derecho → **Compartir** → «Cualquier persona con el enlace» → **Copiar enlace** → péguelo en la columna «Imagen».
-- **Ver el cambio ya:** en GitHub, Actions → Publicar en GitHub Pages → Run workflow.
+- **Ver el cambio ya:** en la hoja, menú **Página web → Publicar cambios** (parte C). La página se actualiza en 2 a 3 minutos.
 
 ### Si algo no aparece
 
@@ -91,3 +95,44 @@ Si la hoja no se puede leer (por ejemplo, se despublicó), la página usa la úl
 
 > GitHub pausa las tareas programadas si el repositorio pasa 60 días sin cambios. Si deja de actualizarse,
 > entre a **Actions** y pulse **Enable workflow**, o publique a mano con **Run workflow**.
+
+## C. Botón «Publicar cambios» en la hoja (una sola vez)
+
+Agrega a la hoja el menú **Página web → Publicar cambios**, que actualiza la página en 2 a 3 minutos sin entrar a GitHub.
+
+### 1. Crear el permiso en GitHub (token)
+
+1. Entre a GitHub con la cuenta dueña del repositorio → foto de perfil (arriba a la derecha) → **Settings**.
+2. Abajo a la izquierda: **Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**.
+3. **Token name:** `Publicar catálogo desde Sheets`.
+4. **Expiration:** la mayor duración disponible (anótela: cuando venza hay que repetir esta parte).
+5. **Repository access:** **Only select repositories** → elija `ferreteria-fatima`.
+6. **Permissions → Repository permissions → Actions:** **Read and write**. No active ningún otro permiso.
+7. **Generate token** y **copie** el código que empieza por `github_pat_...` (GitHub solo lo muestra una vez).
+
+> Este código permite publicar la página. No lo comparta ni lo pegue en la hoja.
+
+### 2. Pegar el script en la hoja
+
+1. En la hoja: menú **Extensiones → Apps Script**.
+2. Borre lo que haya en el editor y pegue todo el contenido de `docs/publicar-cambios.gs`.
+3. Pulse **Guardar** (ícono de disquete).
+
+### 3. Guardar el permiso
+
+1. En Apps Script, menú izquierdo: **⚙ Configuración del proyecto**.
+2. Abajo, **Propiedades de la secuencia de comandos → Agregar propiedad de la secuencia de comandos**.
+3. **Propiedad:** `GITHUB_TOKEN` · **Valor:** el código `github_pat_...` → **Guardar propiedades de la secuencia de comandos**.
+
+### 4. Probar
+
+1. Vuelva a la hoja y **recárguela** (F5). Aparece el menú **Página web** junto a «Ayuda».
+2. **Página web → Publicar cambios**. La primera vez Google pide autorización: **Continuar** → elija su
+   cuenta → **Configuración avanzada → Ir a … (no seguro)** → **Permitir**. (El aviso aparece porque el
+   script es propio y no está verificado por Google; solo se conecta con GitHub.)
+3. Debe aparecer «Listo. La página se actualizará en 2 a 3 minutos».
+
+**Si aparece un error 401 o 403**, el token venció o no tiene el permiso de **Actions**: repita los pasos 1 y 3.
+
+> Quien pueda editar la hoja puede abrir Apps Script y ver el token. Comparta la hoja como **Editor**
+> solo con personas de confianza.
