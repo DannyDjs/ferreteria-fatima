@@ -135,7 +135,7 @@ configurarla y usarla: **[docs/catalogo-google-sheets.md](docs/catalogo-google-s
 
 | Integración | Estado | Configuración |
 |---|---|---|
-| **Solicitudes de cotización** | Hoy: Formspree (`https://formspree.io/f/mvgqjrvb`). Listo para pasar a **Google Apps Script** (hoja privada «Solicitudes» + correo, sin Formspree ni límite mensual). | Guía: [docs/solicitudes-google.md](docs/solicitudes-google.md). Al terminar, poner la URL `https://script.google.com/macros/s/.../exec` en `empresa.json → "formularios" → "endpoint"`. |
+| **Solicitudes de cotización** | **Google Apps Script** (`docs/solicitudes.gs`): cada solicitud se guarda en la hoja privada «Solicitudes página web» y llega por correo. Sin Formspree. | Guía y mantenimiento: [docs/solicitudes-google.md](docs/solicitudes-google.md). URL en `empresa.json → "formularios" → "endpoint"`. |
 | **WhatsApp** (`wa.me/573154864439`) | Funcional. Mensajes codificados con `encodeURIComponent`. | Cambiar el número en `empresa.json → whatsapp.numero` (formato internacional sin `+`). |
 | **Google Maps** | Se carga solo si la persona pulsa «Ver mapa aquí» (privacidad y rendimiento). | `empresa.json → mapaEmbed` y `mapaUrl`. |
 | **Facebook** | Enlace en el pie. | `empresa.json → redes.facebook`. |
