@@ -77,7 +77,7 @@ if (raiz) {
     if (anunciar) {
       estado.textContent = total === 0
         ? 'Sin resultados'
-        : `${total === tarjetas.length && !actual.q && !actual.sub ? '' : 'Resultados: '}${total} ${total === 1 ? 'línea de producto' : 'líneas de producto'}${mostrados < total ? ` (mostrando ${mostrados})` : ''}`;
+        : `${total === tarjetas.length && !actual.q && !actual.sub ? '' : 'Resultados: '}${total} ${total === 1 ? 'producto' : 'productos'}${mostrados < total ? ` (mostrando ${mostrados})` : ''}`;
     }
   }
 

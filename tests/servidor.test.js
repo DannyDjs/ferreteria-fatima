@@ -20,7 +20,7 @@ before(async () => {
 after(() => servidor?.kill());
 
 test('las páginas responden 200 con cabeceras de seguridad', async () => {
-  for (const ruta of ['/', '/nosotros/', '/productos/', '/productos/tuberias/', '/productos/tuberias/tuberia-galvanizada/', '/servicios/', '/cotizar/', '/contacto/']) {
+  for (const ruta of ['/', '/nosotros/', '/productos/', '/productos/tuberias-y-accesorios-roscados/', '/productos/tuberias-y-accesorios-roscados/tuberia-galvanizada-de-pared-gruesa/', '/servicios/', '/cotizar/', '/contacto/']) {
     const r = await fetch(base + ruta);
     assert.equal(r.status, 200, ruta);
     assert.match(r.headers.get('content-type'), /text\/html/);

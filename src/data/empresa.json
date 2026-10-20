@@ -95,7 +95,7 @@
     "Endpoint de Formspree (mvgqjrvb): confirmar a qué correo llegan las solicitudes y que la cuenta siga activa.",
     "Años de experiencia: el sitio anterior decía 'más de 20 años'; no se publica hasta confirmarlo.",
     "NIT 5.203.413-9: tomado de la plantilla de cotización; confirmar razón social del responsable del tratamiento de datos.",
-    "Catálogo: todas las líneas de producto son genéricas; faltan referencias, marcas, medidas y fotografías reales.",
+    "Catálogo: se carga desde la hoja (Google Sheets). Hay productos con «Publicar: No» porque el documento los marcó como pendientes de identificar; confirmarlos y faltan fotos reales.",
     "Dominio ferreteriafatima.com: confirmar que es el dominio definitivo (se usa en canonical, sitemap y datos estructurados).",
     "Correo: se usa provisionalmente dannyramirezch73@gmail.com; cambiarlo en empresa.json → \"correo\" cuando exista el correo de la empresa.",
     "Servicios: falta confirmar tiempos de entrega; reemplazar las fotos genéricas de roscado, ranurado y corte por fotos reales del taller (servicios.json).",

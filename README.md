@@ -115,36 +115,21 @@ Todo dato comercial está en `src/data/empresa.json` y se replica automáticamen
 el pie, la página de contacto, los mensajes de WhatsApp, la política de datos y los datos estructurados (Schema.org).
 El campo `"correo": null` hace que el sitio **no muestre correo** hasta que se defina uno real.
 
-### Catálogo: cómo agregar o editar productos
+### Catálogo: se edita en Google Sheets
 
-Editar `src/data/catalogo.json`. Cada producto:
+Los **productos** se editan en una hoja de Google Sheets, sin tocar código. Guía paso a paso para
+configurarla y usarla: **[docs/catalogo-google-sheets.md](docs/catalogo-google-sheets.md)**.
 
-```json
-{
-  "id": "tuberia-galvanizada",            // único, minúsculas y guiones (forma parte de la URL)
-  "nombre": "Tubería galvanizada",
-  "categoria": "tuberias",                // slug de una categoría existente
-  "subcategoria": "tuberia-metalica",     // slug de una subcategoría de esa categoría
-  "descripcion": "…",
-  "aplicaciones": ["…"],
-  "referencia": "TG-12",                  // opcional; si falta se muestra «Consultar con un asesor»
-  "marca": "…",                           // opcional
-  "unidad": "Tubo x 6 m",                 // opcional
-  "especificaciones": [{ "etiqueta": "Diámetro", "valor": "1/2\"" }],   // opcional
-  "imagen": "/assets/img/productos/tuberia-galvanizada.webp",          // opcional, foto real
-  "imagenAlt": "Tubos galvanizados de 1/2 pulgada en bodega"
-}
-```
-
-- `npm run build` **valida** el catálogo: IDs repetidos, categorías o subcategorías inexistentes y
-  subcategorías que quedarían vacías detienen la compilación con un mensaje claro.
-- Las fotos se guardan en `src/assets/img/productos/` (WebP, ~800×600 px). Con foto, la tarjeta cambia
-  automáticamente al formato con imagen.
+- **Hoja publicada como CSV:** variable de GitHub `CATALOGO_CSV_URL`. Sin ella, o si falla, se usa la copia local
+  `src/data/catalogo.csv`, generada a partir del documento «Catálogo general de productos».
+- **Categorías:** las 12 están en `src/data/catalogo.json` (nombre, ícono y textos). Las subcategorías se crean
+  solas a partir de la hoja.
+- **Lectura y validación:** `scripts/catalogo.js` lee la hoja. Las filas con errores se omiten con un aviso y no
+  detienen la publicación. Las filas con «Publicar: No» quedan ocultas.
+- **Fotos:** con la columna «Imagen» (enlace https o de Google Drive), la compilación las descarga al sitio,
+  porque la política de seguridad solo permite imágenes propias.
+- **Actualización:** GitHub Actions vuelve a publicar cada hora, en cada `git push` y con «Run workflow».
 - **No** agregar precios ni existencias sin datos reales: el sitio funciona con «Consultar precio».
-
-Si el catálogo crece a cientos de referencias o lo deben editar personas no técnicas, la evolución natural
-es un CMS sin servidor (por ejemplo, Decap CMS sobre el mismo repositorio) o una hoja de cálculo exportada
-a JSON en la compilación (ver §12).
 
 ## 6. Integraciones
 

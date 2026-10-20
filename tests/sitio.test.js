@@ -9,10 +9,10 @@ import { tmpdir } from 'node:os';
 import { build, validarCatalogo } from '../scripts/build.js';
 
 const empresa = JSON.parse(readFileSync(new URL('../src/data/empresa.json', import.meta.url), 'utf8'));
-const catalogo = JSON.parse(readFileSync(new URL('../src/data/catalogo.json', import.meta.url), 'utf8'));
 const servicios = JSON.parse(readFileSync(new URL('../src/data/servicios.json', import.meta.url), 'utf8'));
 
 let dist;
+let catalogo; // productos y categorías tal como los cargó la compilación (desde la hoja)
 const paginas = new Map(); // ruta pública -> html
 
 async function listar(dir) {
@@ -26,7 +26,7 @@ async function listar(dir) {
 
 before(async () => {
   dist = await mkdtemp(join(tmpdir(), 'ff-dist-'));
-  await build({ silencioso: true, salida: dist });
+  ({ catalogo } = await build({ silencioso: true, salida: dist }));
   for (const archivo of (await listar(dist)).filter((f) => f.endsWith('.html'))) {
     const rel = relative(dist, archivo).split(sep).join('/');
     const ruta = rel === '404.html' ? '/404.html' : '/' + rel.replace(/index\.html$/, '');

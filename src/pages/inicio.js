@@ -45,11 +45,11 @@ export default function inicio(ctx) {
     <form class="search-box" action="${rutas.productos}" method="get" role="search">
       <label for="buscar-inicio" class="visually-hidden">Buscar productos por nombre o referencia</label>
       ${icono('buscar')}
-      <input id="buscar-inicio" name="q" type="search" placeholder="Ej.: tubería galvanizada, válvula de bola, chumacera…" autocomplete="off" maxlength="80">
+      <input id="buscar-inicio" name="q" type="search" placeholder="Ej.: tubería galvanizada, regulador Unkar, electrodo 6011…" autocomplete="off" maxlength="80">
       <button class="btn btn--primary" type="submit">Buscar</button>
     </form>
     <ul class="chip-row" aria-label="Búsquedas frecuentes">
-      ${['Tubería galvanizada', 'Válvulas de bola', 'Acero inoxidable', 'Codos', 'Rodamientos'].map((t) => html`<li><a class="chip" href="${rutas.productos}?q=${encodeURIComponent(t)}">${t}</a></li>`)}
+      ${['Tubería galvanizada', 'Regulador Unkar', 'Válvulas de bola', 'Electrodo', 'Chumaceras'].map((t) => html`<li><a class="chip" href="${rutas.productos}?q=${encodeURIComponent(t)}">${t}</a></li>`)}
     </ul>
   </div>
 </section>
@@ -61,7 +61,7 @@ export default function inicio(ctx) {
       <article class="pillar">
         <span class="pillar__num">01</span>
         <h3 class="pillar__title">Suministro de ferretería industrial</h3>
-        <p>Tubería, válvulas, accesorios, aceros y metales, herramientas, tornillería, rodamientos y líneas de gas y eléctricos.</p>
+        <p>Tubería y accesorios, gas y GLP, redes contra incendios, válvulas, metales, tornillería, soldadura, herramientas y más.</p>
         <a class="link-arrow" href="${rutas.productos}">Ver catálogo${icono('flecha')}</a>
       </article>
       <article class="pillar">
@@ -94,7 +94,7 @@ export default function inicio(ctx) {
             <span class="category-tile__name">${c.nombre}</span>
             <span class="category-tile__desc">${c.resumen}</span>
           </span>
-          <span class="category-tile__count">${conteo(c.slug)} líneas${icono('chevron')}</span>
+          <span class="category-tile__count">${conteo(c.slug)} productos${icono('chevron')}</span>
         </a>
       </li>`)}
     </ul>

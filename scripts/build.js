@@ -6,6 +6,7 @@ import { createHash } from 'node:crypto';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { NOMBRES_ICONOS } from '../src/templates/icons.js';
+import { cargarCatalogo, descargarImagenes } from './catalogo.js';
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = join(RAIZ, 'src');
@@ -103,7 +104,10 @@ export async function build({ dev = false, silencioso = false, salida = DIST_PRE
   const DIST = salida;
   const inicio = Date.now();
   cargarEnv();
-  const [empresa, catalogo, servicios] = await Promise.all([leerJson('empresa.json'), leerJson('catalogo.json'), leerJson('servicios.json')]);
+  const [empresa, categoriasJson, servicios] = await Promise.all([leerJson('empresa.json'), leerJson('catalogo.json'), leerJson('servicios.json')]);
+  // Productos desde la hoja de cálculo (Google Sheets publicada o copia local).
+  const { categorias, productos, avisos, origen: origenCatalogo } = await cargarCatalogo(categoriasJson.categorias, { archivoLocal: join(SRC, 'data', 'catalogo.csv') });
+  const catalogo = { categorias, productos };
 
   const errores = validarCatalogo(catalogo, servicios);
   if (errores.length) throw new Error('Catálogo con errores:\n - ' + errores.join('\n - '));
@@ -131,6 +135,7 @@ export async function build({ dev = false, silencioso = false, salida = DIST_PRE
     recursive: true,
     filter: (origen) => !origen.includes('originales'),
   });
+  await descargarImagenes(catalogo.productos, DIST, avisos);
   const css = minificarCss((await Promise.all(cssRutas.map((r) => readFile(r, 'utf8')))).join('\n')).replace(/url\('\//g, `url('${base}/`);
   await writeFile(join(DIST, 'assets', 'css', 'site.css'), css);
 
@@ -167,12 +172,18 @@ export async function build({ dev = false, silencioso = false, salida = DIST_PRE
   if (!silencioso) {
     console.log(`✔ ${paginas.length} páginas generadas en dist/ (${dev ? 'desarrollo' : 'producción'}) en ${Date.now() - inicio} ms`);
     console.log(`  Formularios → ${formEndpoint}`);
+    console.log(`  Catálogo → ${catalogo.productos.length} productos en ${catalogo.categorias.length} categorías (${origenCatalogo})`);
+    if (avisos.length) {
+      console.log(`
+⚠ ${avisos.length} avisos del catálogo (las filas con problemas no se publican):`);
+      for (const a of avisos) console.log(`  - ${a}`);
+    }
     if (empresa.pendientes?.length) {
       console.log(`\n⚠ ${empresa.pendientes.length} datos comerciales pendientes de confirmar (src/data/empresa.json → "pendientes"):`);
       for (const p of empresa.pendientes) console.log(`  - ${p}`);
     }
   }
-  return { paginas: paginas.map((p) => p.ruta), version };
+  return { paginas: paginas.map((p) => p.ruta), version, catalogo, avisos };
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {

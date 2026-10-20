@@ -8,7 +8,7 @@ import { cabeceraPagina, migas, bandaCotizacion } from '../templates/componentes
 function preguntas(ctx) {
   const e = ctx.empresa;
   return [
-    { p: '¿Venden en línea o tienen tienda virtual?', r: 'No realizamos ventas ni pagos en línea. El sitio funciona como catálogo: puede revisar nuestras líneas de producto y enviarnos una solicitud de cotización por formulario o WhatsApp. Un asesor le responde con precios y disponibilidad.' },
+    { p: '¿Venden en línea o tienen tienda virtual?', r: 'No realizamos ventas ni pagos en línea. El sitio funciona como catálogo: puede revisar nuestro catálogo y enviarnos una solicitud de cotización por formulario o WhatsApp. Un asesor le responde con precios y disponibilidad.' },
     { p: '¿Por qué los productos no muestran precio?', r: 'Los precios de materiales industriales cambian según medidas, cantidades, referencias y disponibilidad de inventario. Para darle un valor correcto, lo confirmamos en cada cotización.' },
     { p: '¿Cómo solicito una cotización?', r: `Puede usar la página "Solicitar cotización", agregar productos desde el catálogo con el botón "Agregar a cotización" o escribirnos por WhatsApp al ${e.whatsapp.visible}. Incluya referencias, medidas y cantidades para una respuesta más precisa.` },
     { p: '¿La solicitud enviada por la página ya es una cotización?', r: 'No. La solicitud nos permite conocer lo que necesita. La cotización oficial es la que le enviamos después de revisar disponibilidad y condiciones, con su vigencia indicada.' },

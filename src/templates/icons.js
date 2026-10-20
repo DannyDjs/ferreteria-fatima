@@ -37,6 +37,7 @@ const ICONOS = {
   herramienta: T('M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'),
   tornillo: T('M7 2h10v4H7zM9.5 6v12l2.5 4 2.5-4V6M9.5 9l5 1.5M9.5 12.5l5 1.5M9.5 16l5 1.5'),
   rodamiento: '<circle cx="12" cy="12" r="9.5"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="5.25" r="1.4"/><circle cx="18.75" cy="12" r="1.4"/><circle cx="12" cy="18.75" r="1.4"/><circle cx="5.25" cy="12" r="1.4"/>',
+  incendio: T('M9 8h6v12a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2zM12 8V5M12 5h4l2 2M9.5 12h5'),
   accesorio: T('M4 21v-8a8 8 0 0 1 8-8h8M9 21v-8a3 3 0 0 1 3-3h8M2.5 21h8M20 3.5v8'),
   // Servicios
   rosca: T('M2 9h20v6H2zM12 9l-1.5 6M15 9l-1.5 6M18 9l-1.5 6M21 9l-1.5 6'),

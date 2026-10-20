@@ -10,7 +10,7 @@ function barraCategorias(ctx, activa) {
   return html`<aside class="catalog__sidebar" aria-label="Categorías del catálogo">
   <h2 class="catalog__sidebar-title">Categorías</h2>
   <ul class="catalog__cats">
-    <li><a href="${rutas.productos}"${!activa ? raw(' aria-current="page"') : ''}><span>Todas las líneas</span><span class="count">${productos.length}</span></a></li>
+    <li><a href="${rutas.productos}"${!activa ? raw(' aria-current="page"') : ''}><span>Todos los productos</span><span class="count">${productos.length}</span></a></li>
     ${categorias.map((c) => html`<li><a href="${rutas.categoria(c.slug)}"${activa?.slug === c.slug ? raw(' aria-current="page"') : ''}>${icono(c.icono)}<span>${c.nombre}</span><span class="count">${productos.filter((p) => p.categoria === c.slug).length}</span></a></li>`)}
   </ul>
   <div class="catalog__help">
@@ -38,10 +38,10 @@ function vistaCatalogo(ctx, categoria) {
           <button type="button" class="chip" data-subcategoria="" aria-pressed="true">Todas</button>
           ${categoria.subcategorias.map((s) => html`<button type="button" class="chip" data-subcategoria="${s.slug}" aria-pressed="false">${s.nombre}</button>`)}
         </div>` : ''}
-        <p class="catalog__status" role="status" aria-live="polite" data-catalogo-estado>${productos.length} líneas de producto</p>
+        <p class="catalog__status" role="status" aria-live="polite" data-catalogo-estado>${productos.length} productos</p>
       </div>
 
-      <h2 class="visually-hidden">${categoria ? `Líneas de ${categoria.nombre.toLowerCase()}` : 'Todas las líneas de producto'}</h2>
+      <h2 class="visually-hidden">${categoria ? `Productos de ${categoria.nombre.toLowerCase()}` : 'Todos los productos'}</h2>
       <div class="product-grid" data-catalogo-grid>
         ${productos.map((p) => tarjetaProducto(ctx, p, { enCategoria: Boolean(categoria) }))}
       </div>
@@ -51,7 +51,7 @@ function vistaCatalogo(ctx, categoria) {
         <h2 class="empty-state__title">No encontramos coincidencias para «<span data-catalogo-termino></span>»</h2>
         <p>Revise la ortografía o use un término más general. Es posible que tengamos el producto aunque no aparezca en el catálogo en línea.</p>
         <div class="empty-state__actions">
-          <button type="button" class="btn btn--outline" data-catalogo-limpiar>Ver todas las líneas</button>
+          <button type="button" class="btn btn--outline" data-catalogo-limpiar>Ver todos los productos</button>
           <a class="btn btn--primary" href="${rutas.cotizar}" data-catalogo-cotizar>${icono('documento')}Solicitarlo por cotización</a>
           <a class="btn btn--whatsapp" href="${enlaceWhatsapp(e.whatsapp.numero, 'Hola, Ferretería Fátima. Estoy buscando un producto:')}" target="_blank" rel="noopener" data-catalogo-whatsapp>${icono('whatsapp')}Preguntar por WhatsApp</a>
         </div>
@@ -61,7 +61,7 @@ function vistaCatalogo(ctx, categoria) {
         <button type="button" class="btn btn--outline" data-catalogo-mas hidden>Mostrar más productos</button>
       </div>
 
-      <p class="note catalog__note">${icono('info')}Las líneas de producto se muestran sin precio. Precio, existencias, marcas y medidas disponibles se confirman en la cotización. Los íconos son representaciones gráficas, no fotografías del producto.</p>
+      <p class="note catalog__note">${icono('info')}Los productos se muestran sin precio. Precio, existencias, marcas y medidas disponibles se confirman en la cotización. Los íconos son representaciones gráficas, no fotografías del producto.</p>
     </div>
   </div>
 </section>`;
@@ -73,14 +73,14 @@ function paginaIndice(ctx) {
     ruta: rutas.productos,
     seccion: 'productos',
     titulo: 'Catálogo de productos de ferretería industrial',
-    descripcion: 'Catálogo de ferretería industrial en Pasto: tubería de acero, galvanizada e inoxidable, accesorios para tubería, válvulas, aceros y metales, herramientas, tornillería, rodamientos y línea de gas.',
+    descripcion: 'Catálogo de ferretería industrial en Pasto: tubería y accesorios roscados, gas y GLP, redes contra incendios, válvulas, aceros, tornillería, soldadura, herramientas y transmisión.',
     scripts: ['catalogo.js'],
     jsonLd: [m.jsonLd],
     cuerpo: html`${cabeceraPagina({
       migasHtml: m.visible,
       eyebrow: 'Catálogo',
       titulo: 'Productos de ferretería industrial',
-      lead: 'Explore nuestras líneas de producto por categoría, agregue lo que necesita a su solicitud y reciba una cotización con precios y disponibilidad.',
+      lead: 'Explore nuestros productos por categoría, agregue lo que necesita a su solicitud y reciba una cotización con precios y disponibilidad.',
     })}
 ${vistaCatalogo(ctx, null)}
 ${bandaCotizacion(ctx)}`,
@@ -121,7 +121,7 @@ function paginaProducto(ctx, p) {
     ruta: url,
     seccion: 'productos',
     titulo: `${p.nombre} | ${c.nombre}`,
-    descripcion: `${p.descripcion} Consulte disponibilidad y solicite cotización en Ferretería Fátima, Pasto.`,
+    descripcion: `${p.nombre}${p.marca ? ` ${p.marca}` : ''} en Ferretería Fátima, Pasto (${c.nombre.toLowerCase()}). Consulte medidas, disponibilidad y solicite su cotización.`,
     jsonLd: [m.jsonLd],
     cuerpo: html`<section class="section section--tight product-page">
   <div class="container">
@@ -129,7 +129,7 @@ function paginaProducto(ctx, p) {
     <div class="product-detail">
       <div class="product-detail__media">
         ${visualProducto(p, c, { grande: true })}
-        ${p.imagen ? '' : html`<p class="product-detail__media-note">Representación gráfica de la línea. Solicite fotos o fichas técnicas de las referencias disponibles.</p>`}
+        ${p.imagen ? '' : html`<p class="product-detail__media-note">Representación gráfica del producto. Solicite fotos o fichas técnicas de las referencias disponibles.</p>`}
       </div>
       <div class="product-detail__info">
         <p class="eyebrow"><span><a href="${rutas.categoria(c.slug)}">${c.nombre}</a>${sub ? html` · ${sub.nombre}` : ''}</span></p>
@@ -138,7 +138,7 @@ function paginaProducto(ctx, p) {
         <dl class="spec-table">
           ${filaDato('Referencia', p.referencia)}
           ${filaDato('Marca', p.marca)}
-          ${filaDato('Unidad de venta', p.unidad)}
+          ${filaDato('Medida / presentación', p.unidad)}
           ${filaDato('Precio', p.precio ? p.precio : html`<span class="muted">Consultar precio</span>`)}
           ${(p.especificaciones || []).map((s) => filaDato(s.etiqueta, s.valor))}
         </dl>
@@ -154,10 +154,10 @@ function paginaProducto(ctx, p) {
     </div>
 
     <div class="product-extra">
-      <section aria-labelledby="aplicaciones-titulo">
+      ${p.aplicaciones?.length ? html`<section aria-labelledby="aplicaciones-titulo">
         <h2 class="mini-title" id="aplicaciones-titulo">Aplicaciones generales</h2>
-        <ul class="check-list">${(p.aplicaciones || []).map((a) => html`<li>${a}</li>`)}</ul>
-      </section>
+        <ul class="check-list">${p.aplicaciones.map((a) => html`<li>${a}</li>`)}</ul>
+      </section>` : ''}
       <section aria-labelledby="datos-titulo">
         <h2 class="mini-title" id="datos-titulo">Datos que conviene enviar al cotizar</h2>
         <ul class="dot-list">${c.datosParaCotizar.map((d) => html`<li>${d}</li>`)}</ul>

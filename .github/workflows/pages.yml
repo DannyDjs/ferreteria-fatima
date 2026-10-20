@@ -1,11 +1,16 @@
-# Publica el sitio en GitHub Pages en cada push a main.
-# Requisito único: en GitHub → Settings → Pages → Source: "GitHub Actions".
+# Publica el sitio en GitHub Pages: en cada push a main, cada hora (para tomar los cambios de la
+# hoja del catálogo) y a mano desde Actions → "Publicar en GitHub Pages" → Run workflow.
+# Requisitos: Settings → Pages → Source: "GitHub Actions".
+# Catálogo desde Google Sheets: Settings → Secrets and variables → Actions → Variables →
+# CATALOGO_CSV_URL = enlace de la hoja publicada como CSV. Sin esa variable se usa src/data/catalogo.csv.
 name: Publicar en GitHub Pages
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: '7 * * * *' # cada hora (minuto 7, para evitar la congestión del minuto 0)
 
 permissions:
   contents: read
@@ -27,11 +32,14 @@ jobs:
       # Si una prueba falla, no se publica y queda en línea la última versión buena.
       - run: npm test
       - name: Compilar para GitHub Pages
-        run: node scripts/build.js
+        # Pages publica los repositorios de proyecto en /<nombre-del-repositorio>.
+        # (Se usa GITHUB_REPOSITORY porque en las ejecuciones programadas el evento no trae el nombre).
+        run: |
+          REPO="${GITHUB_REPOSITORY#*/}"
+          OWNER="${GITHUB_REPOSITORY_OWNER,,}"
+          BASE_PATH="/$REPO" SITE_URL="https://$OWNER.github.io/$REPO" node scripts/build.js
         env:
-          # Pages publica los repositorios de proyecto en /<nombre-del-repositorio>.
-          BASE_PATH: /${{ github.event.repository.name }}
-          SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+          CATALOGO_CSV_URL: ${{ vars.CATALOGO_CSV_URL }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

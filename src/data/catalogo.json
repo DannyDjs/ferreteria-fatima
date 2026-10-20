@@ -1,179 +1,101 @@
 {
-  "_nota": "Catálogo centralizado. Cada 'producto' es una LÍNEA de producto confirmada por la empresa, no una referencia específica. Para agregar referencias reales: completar 'referencia', 'marca', 'unidad', 'especificaciones' (lista de {etiqueta, valor}) e 'imagen' (ruta en src/assets/img/productos/). Los campos null se muestran como 'Por confirmar'. Nunca agregar precios ni existencias sin datos reales.",
+  "_nota": "Categorías del catálogo (cambian poco; las edita el desarrollador). Los PRODUCTOS no van aquí: vienen de la hoja de Google Sheets publicada como CSV (variable CATALOGO_CSV_URL) o, si no está configurada, de src/data/catalogo.csv. En la hoja, la columna 'Categoría' debe coincidir con un 'nombre' de esta lista. Las subcategorías se crean solas a partir de la hoja.",
   "categorias": [
     {
-      "slug": "linea-de-gas",
-      "nombre": "Línea de gas",
-      "icono": "gas",
-      "resumen": "Reguladores, válvulas, tubería, mangueras y conexiones para instalaciones de gas.",
-      "descripcion": "Materiales y accesorios para instalaciones de gas residenciales, comerciales e industriales. Indíquenos el tipo de gas, la presión de trabajo y las medidas para orientarle sobre los productos adecuados.",
-      "datosParaCotizar": ["Tipo de gas (natural o GLP)", "Presión de trabajo", "Diámetro o medida de conexión", "Cantidad requerida"],
-      "subcategorias": [
-        { "slug": "regulacion-y-control", "nombre": "Regulación y control" },
-        { "slug": "conduccion", "nombre": "Conducción" },
-        { "slug": "conexiones-para-gas", "nombre": "Conexiones y complementos" }
-      ]
-    },
-    {
-      "slug": "electricos",
-      "nombre": "Línea de eléctricos",
-      "icono": "electrico",
-      "resumen": "Materiales, accesorios y complementos para instalaciones eléctricas.",
-      "descripcion": "Materiales y accesorios para instalaciones eléctricas. Consulte las referencias, calibres y marcas disponibles con un asesor.",
-      "datosParaCotizar": ["Tipo de instalación", "Calibre, amperaje o especificación", "Marca de preferencia, si la tiene", "Cantidad requerida"],
-      "subcategorias": [
-        { "slug": "materiales-electricos", "nombre": "Materiales eléctricos" },
-        { "slug": "accesorios-electricos", "nombre": "Accesorios eléctricos" },
-        { "slug": "complementos-instalacion", "nombre": "Complementos para instalaciones" }
-      ]
-    },
-    {
-      "slug": "aceros-y-metales",
-      "nombre": "Aceros, metales y materiales especiales",
-      "icono": "metales",
-      "resumen": "Aceros, acero inoxidable, aluminio, bronce, latón, platinas y láminas.",
-      "descripcion": "Materiales metálicos para fabricación, mantenimiento y montaje industrial. Las denominaciones técnicas, aleaciones y presentaciones se confirman según el inventario disponible.",
-      "datosParaCotizar": ["Material y aleación o grado", "Presentación (barra, platina, lámina…)", "Medidas: espesor, ancho, diámetro o longitud", "Cantidad o peso requerido"],
-      "subcategorias": [
-        { "slug": "aceros", "nombre": "Aceros" },
-        { "slug": "no-ferrosos", "nombre": "Metales no ferrosos" },
-        { "slug": "platinas-y-laminas", "nombre": "Platinas y láminas" }
-      ]
-    },
-    {
-      "slug": "tuberias",
-      "nombre": "Tuberías",
+      "slug": "tuberias-y-accesorios-roscados",
+      "nombre": "Tuberías y accesorios roscados",
       "icono": "tuberia",
-      "resumen": "Tubería de acero al carbón, galvanizada, inoxidable y ranurada.",
-      "descripcion": "Tubería metálica para conducción de fluidos, estructuras y montajes industriales. La clase o cédula, el diámetro y la longitud se confirman según la clasificación del proveedor.",
-      "datosParaCotizar": ["Material de la tubería", "Diámetro nominal", "Clase o cédula (por ejemplo, clase 40)", "Longitud o número de tubos", "Si requiere roscado, ranurado o corte"],
-      "subcategorias": [
-        { "slug": "tuberia-metalica", "nombre": "Tubería metálica" },
-        { "slug": "conduccion-y-montaje", "nombre": "Conducción y montaje" }
-      ]
+      "resumen": "Tubería de acero al carbono, galvanizada, inoxidable y cobre, con accesorios roscados.",
+      "descripcion": "Tubería industrial y accesorios roscados en galvanizado, acero al carbono y acero inoxidable. Confirme material, diámetro y tipo de rosca con un asesor.",
+      "datosParaCotizar": ["Material (galvanizado, acero al carbono, inoxidable, cobre)", "Diámetro nominal y clase o cédula", "Tipo de accesorio y de rosca", "Cantidad requerida", "Si requiere roscado o corte"]
     },
     {
-      "slug": "valvulas",
-      "nombre": "Válvulas",
-      "icono": "valvula",
-      "resumen": "Válvulas de bola, galvanizadas, de acero al carbón y de acero inoxidable.",
-      "descripcion": "Válvulas para control y cierre en redes de tubería. Indíquenos el fluido, la presión y el tipo de conexión para orientarle.",
-      "datosParaCotizar": ["Tipo de válvula", "Material del cuerpo", "Diámetro y tipo de conexión (roscada, bridada…)", "Fluido y presión de trabajo", "Cantidad requerida"],
-      "subcategorias": [
-        { "slug": "por-tipo", "nombre": "Por tipo" },
-        { "slug": "por-material", "nombre": "Por material" }
-      ]
+      "slug": "gas-y-glp",
+      "nombre": "Gas y GLP",
+      "icono": "gas",
+      "resumen": "Reguladores Unkar, medidores, válvulas, tubería y accesorios para gas.",
+      "descripcion": "Reguladores, medición, tubería y accesorios para instalaciones de gas natural y GLP. Indíquenos el tipo de gas y la presión de trabajo.",
+      "datosParaCotizar": ["Tipo de gas (natural o GLP)", "Presión de trabajo", "Referencia del regulador, si la conoce", "Diámetro de conexión", "Cantidad requerida"]
     },
     {
-      "slug": "herramientas",
-      "nombre": "Herramientas",
-      "icono": "herramienta",
-      "resumen": "Llaves para tubo, expansivas, mixtas y herramienta manual e industrial.",
-      "descripcion": "Herramienta manual e industrial para instalación, montaje y mantenimiento. Consulte marcas y medidas disponibles.",
-      "datosParaCotizar": ["Tipo de herramienta", "Medida o rango", "Marca de preferencia, si la tiene", "Cantidad requerida"],
-      "subcategorias": [
-        { "slug": "llaves", "nombre": "Llaves" },
-        { "slug": "herramienta-manual-e-industrial", "nombre": "Herramienta manual e industrial" }
-      ]
+      "slug": "redes-contra-incendios",
+      "nombre": "Redes contra incendios",
+      "icono": "incendio",
+      "resumen": "Tubería clase 10, uniones ranuradas, conexiones y soportes para redes contra incendios.",
+      "descripcion": "Productos destinados específicamente a redes contra incendios: tubería, conexiones ranuradas y sistemas de soporte. También ranuramos tubería.",
+      "datosParaCotizar": ["Diámetro y clase de la tubería", "Tipo de conexión (ranurada, roscada)", "Tipo de soporte requerido", "Cantidad requerida"]
     },
     {
-      "slug": "tornilleria-y-fijacion",
-      "nombre": "Tornillería y fijación",
-      "icono": "tornillo",
-      "resumen": "Tornillos, chazos, clavos, elementos de fijación y cinta de teflón.",
-      "descripcion": "Tornillería, anclajes y accesorios de instalación para obra, montaje y mantenimiento.",
-      "datosParaCotizar": ["Tipo de elemento", "Medida (diámetro y largo)", "Material o acabado", "Cantidad (unidades o cajas)"],
-      "subcategorias": [
-        { "slug": "tornillos", "nombre": "Tornillos" },
-        { "slug": "anclajes-y-fijacion", "nombre": "Anclajes y fijación" },
-        { "slug": "accesorios-de-instalacion", "nombre": "Accesorios de instalación" }
-      ]
+      "slug": "electricos-y-canalizacion",
+      "nombre": "Eléctricos y canalización",
+      "icono": "electrico",
+      "resumen": "Tubería conduit, EMT, cable, alambre, conectores y accesorios eléctricos.",
+      "descripcion": "Canalización y materiales para instalaciones eléctricas. Consulte calibres, diámetros y marcas disponibles.",
+      "datosParaCotizar": ["Tipo de tubería o material", "Diámetro o calibre", "Longitud o cantidad", "Marca de preferencia, si la tiene"]
     },
     {
-      "slug": "rodamientos-y-transmision",
-      "nombre": "Rodamientos y transmisión",
-      "icono": "rodamiento",
-      "resumen": "Rodamientos y chumaceras para maquinaria y equipos.",
-      "descripcion": "Rodamientos y chumaceras para maquinaria y equipos. Otros componentes de transmisión se agregarán cuando la empresa los confirme en su catálogo.",
-      "datosParaCotizar": ["Referencia del rodamiento o chumacera, si la conoce", "Diámetro del eje", "Equipo o aplicación", "Cantidad requerida"],
-      "subcategorias": [
-        { "slug": "rodamientos", "nombre": "Rodamientos" },
-        { "slug": "chumaceras", "nombre": "Chumaceras" }
-      ]
-    },
-    {
-      "slug": "accesorios-para-tuberia",
-      "nombre": "Accesorios para tubería y conexiones",
+      "slug": "acero-inoxidable-sanitario",
+      "nombre": "Acero inoxidable sanitario",
       "icono": "accesorio",
-      "resumen": "Codos, tees, uniones, semicodos y reducciones en distintos materiales.",
-      "descripcion": "Accesorios y conexiones para redes de tubería. Las combinaciones de material, diámetro y tipo de conexión se confirman según inventario.",
-      "datosParaCotizar": ["Tipo de accesorio", "Material (galvanizado, acero al carbón, inoxidable)", "Diámetro y tipo de conexión", "Cantidad requerida"],
-      "subcategorias": [
-        { "slug": "por-material", "nombre": "Por material" },
-        { "slug": "por-tipo-de-conexion", "nombre": "Por tipo de conexión" }
-      ]
+      "resumen": "Ferrules, abrazaderas, empaques, accesorios y válvulas sanitarias para uso alimentario.",
+      "descripcion": "Conexiones de acero inoxidable para procesos sanitarios y alimentarios, diferentes de los accesorios roscados industriales.",
+      "datosParaCotizar": ["Tipo de accesorio", "Diámetro", "Tipo de conexión (clamp, soldable)", "Cantidad requerida"]
+    },
+    {
+      "slug": "valvulas-vapor-e-instrumentacion",
+      "nombre": "Válvulas, vapor e instrumentación",
+      "icono": "valvula",
+      "resumen": "Válvulas industriales, trampas de vapor, manómetros y conexiones.",
+      "descripcion": "Válvulas para agua, aire y vapor, sistemas de vapor para marmitas e instrumentación. Las válvulas de gas están en Gas y GLP y las sanitarias en Acero inoxidable sanitario.",
+      "datosParaCotizar": ["Tipo de válvula", "Material del cuerpo", "Diámetro y tipo de conexión", "Fluido, presión y temperatura de trabajo", "Cantidad requerida"]
+    },
+    {
+      "slug": "metales-y-plasticos-de-ingenieria",
+      "nombre": "Metales y plásticos de ingeniería",
+      "icono": "metales",
+      "resumen": "Barras de acero 1020, 1045 y 4140, inoxidable, aluminio, bronce, latón, cobre y plásticos técnicos.",
+      "descripcion": "Barras, platinas, perfiles y plásticos de ingeniería para mecanizado y fabricación. Las medidas se confirman según inventario.",
+      "datosParaCotizar": ["Material y aleación", "Forma (redonda, plana, cuadrada, perforada, lámina)", "Diámetro o espesor y ancho", "Longitud o cantidad"]
+    },
+    {
+      "slug": "tornilleria-fijaciones-y-anclajes",
+      "nombre": "Tornillería, fijaciones y anclajes",
+      "icono": "tornillo",
+      "resumen": "Tornillos métricos y en pulgadas, tuercas, arandelas, varillas, remaches y anclajes.",
+      "descripcion": "Tornillería y elementos de fijación en medidas métricas y en pulgadas, en acabados galvanizado, inoxidable y grado 8.",
+      "datosParaCotizar": ["Tipo de tornillo o elemento", "Medida (diámetro, rosca y largo)", "Material o acabado", "Cantidad (unidades o cajas)"]
+    },
+    {
+      "slug": "soldadura-corte-abrasivos-y-pulido",
+      "nombre": "Soldadura, corte, abrasivos y pulido",
+      "icono": "corte",
+      "resumen": "Electrodos, varillas de aporte, discos de corte y desbaste, lijas, cepillos y pastas.",
+      "descripcion": "Consumibles de soldadura, discos y productos de pulido y acabado para taller y obra.",
+      "datosParaCotizar": ["Tipo de consumible y referencia", "Diámetro o medida", "Material a soldar o pulir", "Cantidad requerida"]
+    },
+    {
+      "slug": "herramientas-perforacion-y-mecanizado",
+      "nombre": "Herramientas, perforación y mecanizado",
+      "icono": "herramienta",
+      "resumen": "Herramienta manual, brocas, sierras copa, buriles y elementos de protección.",
+      "descripcion": "Herramienta manual, perforación y herramientas de torno para taller, obra y mantenimiento.",
+      "datosParaCotizar": ["Tipo de herramienta", "Medida o diámetro", "Material a trabajar", "Marca de preferencia, si la tiene", "Cantidad requerida"]
+    },
+    {
+      "slug": "transmision-rodamientos-y-carga",
+      "nombre": "Transmisión, rodamientos y carga",
+      "icono": "rodamiento",
+      "resumen": "Cadenas de rodillos, piñones, correas, poleas, chumaceras y accesorios de carga.",
+      "descripcion": "Transmisión de potencia, soporte de ejes y accesorios para carga y sujeción.",
+      "datosParaCotizar": ["Tipo de elemento y referencia", "Paso, perfil o diámetro de eje", "Capacidad de carga, si aplica", "Cantidad requerida"]
+    },
+    {
+      "slug": "equipos-sellantes-y-ferreteria-general",
+      "nombre": "Equipos, sellantes y ferretería general",
+      "icono": "cajas",
+      "resumen": "Siliconas, sellantes, cintas, lubricantes, equipos y ferretería general.",
+      "descripcion": "Sellantes, consumibles de mantenimiento, equipos y artículos de ferretería general.",
+      "datosParaCotizar": ["Tipo de producto", "Presentación, color o medida", "Cantidad requerida"]
     }
-  ],
-  "productos": [
-    { "id": "reguladores-para-gas", "nombre": "Reguladores para gas", "categoria": "linea-de-gas", "subcategoria": "regulacion-y-control", "descripcion": "Reguladores para controlar la presión de suministro en instalaciones de gas.", "aplicaciones": ["Instalaciones residenciales y comerciales", "Equipos que requieren presión regulada"] },
-    { "id": "valvulas-para-gas", "nombre": "Válvulas para instalaciones de gas", "categoria": "linea-de-gas", "subcategoria": "regulacion-y-control", "descripcion": "Válvulas de corte y control para redes y puntos de consumo de gas.", "aplicaciones": ["Corte de suministro en redes de gas", "Puntos de conexión de gasodomésticos y equipos"] },
-    { "id": "tuberia-pe-lp-gas", "nombre": "Tubería PE-LP para gas", "categoria": "linea-de-gas", "subcategoria": "conduccion", "descripcion": "Tubería para conducción de gas. La denominación comercial exacta y las medidas disponibles se confirman con un asesor.", "aplicaciones": ["Redes de conducción de gas"] },
-    { "id": "mangueras-para-gas", "nombre": "Mangueras para gas", "categoria": "linea-de-gas", "subcategoria": "conduccion", "descripcion": "Mangueras para la conexión de equipos y gasodomésticos.", "aplicaciones": ["Conexión de estufas, hornos y equipos a gas"] },
-    { "id": "accesorios-conexiones-gas", "nombre": "Accesorios y conexiones para gas", "categoria": "linea-de-gas", "subcategoria": "conexiones-para-gas", "descripcion": "Accesorios y conexiones para el montaje de instalaciones de gas.", "aplicaciones": ["Montaje y reparación de redes de gas"] },
-    { "id": "complementos-instalaciones-gas", "nombre": "Productos complementarios para instalaciones de gas", "categoria": "linea-de-gas", "subcategoria": "conexiones-para-gas", "descripcion": "Otros productos relacionados con instalaciones de gas. Consulte disponibilidad según su proyecto.", "aplicaciones": ["Instalación y mantenimiento de redes de gas"] },
-
-    { "id": "materiales-electricos", "nombre": "Materiales eléctricos", "categoria": "electricos", "subcategoria": "materiales-electricos", "descripcion": "Materiales para instalaciones eléctricas. Consulte referencias y calibres disponibles.", "aplicaciones": ["Instalaciones eléctricas nuevas", "Mantenimiento y reparaciones"] },
-    { "id": "accesorios-electricos", "nombre": "Accesorios eléctricos", "categoria": "electricos", "subcategoria": "accesorios-electricos", "descripcion": "Accesorios para la conexión, protección y terminación de instalaciones eléctricas.", "aplicaciones": ["Conexión y terminación de circuitos"] },
-    { "id": "complementos-instalaciones-electricas", "nombre": "Elementos complementarios para instalaciones", "categoria": "electricos", "subcategoria": "complementos-instalacion", "descripcion": "Elementos de apoyo para el montaje de instalaciones eléctricas.", "aplicaciones": ["Montaje y organización de instalaciones"] },
-
-    { "id": "aceros", "nombre": "Aceros", "categoria": "aceros-y-metales", "subcategoria": "aceros", "descripcion": "Aceros para fabricación, mecanizado y mantenimiento. El grado y la presentación se confirman según inventario.", "aplicaciones": ["Fabricación y mecanizado", "Mantenimiento industrial"] },
-    { "id": "acero-inoxidable", "nombre": "Acero inoxidable", "categoria": "aceros-y-metales", "subcategoria": "aceros", "descripcion": "Acero inoxidable para aplicaciones que requieren resistencia a la corrosión. Consulte grados y presentaciones disponibles.", "aplicaciones": ["Industria de alimentos y procesos", "Ambientes corrosivos"] },
-    { "id": "aluminio", "nombre": "Aluminio", "categoria": "aceros-y-metales", "subcategoria": "no-ferrosos", "descripcion": "Aluminio en las presentaciones disponibles en inventario.", "aplicaciones": ["Fabricación liviana", "Estructuras y piezas especiales"] },
-    { "id": "bronce", "nombre": "Bronce", "categoria": "aceros-y-metales", "subcategoria": "no-ferrosos", "descripcion": "Bronce para mecanizado y piezas de desgaste. Consulte aleaciones y medidas disponibles.", "aplicaciones": ["Bujes y piezas de desgaste", "Mecanizado"] },
-    { "id": "laton", "nombre": "Latón", "categoria": "aceros-y-metales", "subcategoria": "no-ferrosos", "descripcion": "Latón para mecanizado y fabricación de piezas.", "aplicaciones": ["Mecanizado de piezas", "Accesorios y conexiones"] },
-    { "id": "platinas", "nombre": "Platinas", "categoria": "aceros-y-metales", "subcategoria": "platinas-y-laminas", "descripcion": "Platinas metálicas para estructuras, soportes y fabricación. Consulte material, ancho y espesor.", "aplicaciones": ["Soportes y estructuras", "Fabricación metalmecánica"] },
-    { "id": "laminas-y-perforados", "nombre": "Láminas y materiales perforados", "categoria": "aceros-y-metales", "subcategoria": "platinas-y-laminas", "descripcion": "Láminas y materiales perforados para cerramientos, protecciones y fabricación.", "aplicaciones": ["Protecciones y guardas", "Cerramientos y fabricación"] },
-    { "id": "otros-materiales-metalicos", "nombre": "Otros materiales metálicos", "categoria": "aceros-y-metales", "subcategoria": "platinas-y-laminas", "descripcion": "Otros materiales metálicos comercializados por la empresa. Consulte disponibilidad con un asesor.", "aplicaciones": ["Proyectos especiales"] },
-
-    { "id": "tuberia-acero-al-carbon", "nombre": "Tubería de acero al carbón", "categoria": "tuberias", "subcategoria": "tuberia-metalica", "descripcion": "Tubería de acero al carbón para conducción de fluidos y montajes industriales.", "aplicaciones": ["Conducción de fluidos", "Redes industriales"] },
-    { "id": "tuberia-galvanizada", "nombre": "Tubería galvanizada", "categoria": "tuberias", "subcategoria": "tuberia-metalica", "descripcion": "Tubería con recubrimiento galvanizado para redes de conducción y estructuras.", "aplicaciones": ["Redes de agua", "Estructuras y soportes"] },
-    { "id": "tuberia-acero-inoxidable", "nombre": "Tubería de acero inoxidable", "categoria": "tuberias", "subcategoria": "tuberia-metalica", "descripcion": "Tubería de acero inoxidable para procesos que requieren resistencia a la corrosión.", "aplicaciones": ["Procesos industriales", "Ambientes corrosivos"] },
-    { "id": "tuberia-clase-40", "nombre": "Tubería clase 40", "categoria": "tuberias", "subcategoria": "tuberia-metalica", "descripcion": "Tubería según la clasificación de espesor que maneje el proveedor. Confirme material y diámetro con un asesor.", "aplicaciones": ["Conducción a presión", "Redes industriales"] },
-    { "id": "tuberia-ranurada", "nombre": "Tubería ranurada", "categoria": "tuberias", "subcategoria": "tuberia-metalica", "descripcion": "Tubería con ranura para sistemas de acople ranurado. También ofrecemos el servicio de ranurado.", "aplicaciones": ["Sistemas de tubería con acoples ranurados", "Redes contra incendio"], "servicio": "ranurado-de-tuberia" },
-    { "id": "accesorios-para-tuberia", "nombre": "Accesorios para tubería", "categoria": "tuberias", "subcategoria": "conduccion-y-montaje", "descripcion": "Accesorios para la unión y derivación de tubería. Vea la línea completa de accesorios y conexiones.", "aplicaciones": ["Montaje de redes de tubería"], "verCategoria": "accesorios-para-tuberia" },
-    { "id": "elementos-conduccion-montaje", "nombre": "Elementos para conducción y montaje", "categoria": "tuberias", "subcategoria": "conduccion-y-montaje", "descripcion": "Elementos de apoyo para la conducción y el montaje de redes de tubería.", "aplicaciones": ["Montaje y soporte de tubería"] },
-
-    { "id": "valvulas-de-bola", "nombre": "Válvulas de bola", "categoria": "valvulas", "subcategoria": "por-tipo", "descripcion": "Válvulas de bola para apertura y cierre rápido en redes de tubería.", "aplicaciones": ["Corte de flujo", "Redes de agua, aire y otros fluidos compatibles"] },
-    { "id": "valvulas-galvanizadas", "nombre": "Válvulas galvanizadas", "categoria": "valvulas", "subcategoria": "por-material", "descripcion": "Válvulas para redes de tubería galvanizada.", "aplicaciones": ["Redes de tubería galvanizada"] },
-    { "id": "valvulas-acero-al-carbon", "nombre": "Válvulas de acero al carbón", "categoria": "valvulas", "subcategoria": "por-material", "descripcion": "Válvulas de acero al carbón para aplicaciones industriales.", "aplicaciones": ["Redes industriales"] },
-    { "id": "valvulas-acero-inoxidable", "nombre": "Válvulas de acero inoxidable", "categoria": "valvulas", "subcategoria": "por-material", "descripcion": "Válvulas de acero inoxidable para procesos que requieren resistencia a la corrosión.", "aplicaciones": ["Procesos industriales", "Ambientes corrosivos"] },
-    { "id": "otras-valvulas", "nombre": "Otras válvulas", "categoria": "valvulas", "subcategoria": "por-tipo", "descripcion": "Otros tipos de válvulas disponibles en inventario. Consulte con un asesor.", "aplicaciones": ["Según el tipo de válvula"] },
-
-    { "id": "llaves-para-tubo", "nombre": "Llaves para tubo", "categoria": "herramientas", "subcategoria": "llaves", "descripcion": "Llaves para el ajuste y montaje de tubería y accesorios roscados.", "aplicaciones": ["Montaje de tubería roscada", "Mantenimiento de redes"] },
-    { "id": "llaves-expansivas", "nombre": "Llaves expansivas", "categoria": "herramientas", "subcategoria": "llaves", "descripcion": "Llaves de abertura ajustable para tuercas y tornillos de diferentes medidas.", "aplicaciones": ["Mantenimiento general", "Montaje"] },
-    { "id": "llaves-mixtas", "nombre": "Llaves mixtas", "categoria": "herramientas", "subcategoria": "llaves", "descripcion": "Llaves con boca fija y estrella para ajuste de tuercas y tornillos.", "aplicaciones": ["Mecánica y mantenimiento"] },
-    { "id": "herramientas-manuales", "nombre": "Herramientas manuales", "categoria": "herramientas", "subcategoria": "herramienta-manual-e-industrial", "descripcion": "Herramienta manual para instalación, obra y mantenimiento.", "aplicaciones": ["Obra y mantenimiento"] },
-    { "id": "herramientas-industriales", "nombre": "Herramientas y accesorios industriales", "categoria": "herramientas", "subcategoria": "herramienta-manual-e-industrial", "descripcion": "Herramientas y accesorios para trabajo industrial. Consulte marcas y referencias disponibles.", "aplicaciones": ["Talleres e industria"] },
-
-    { "id": "tornillos", "nombre": "Tornillos", "categoria": "tornilleria-y-fijacion", "subcategoria": "tornillos", "descripcion": "Tornillos para montaje y fijación. Consulte tipo, medida y acabado.", "aplicaciones": ["Montaje y ensamble"] },
-    { "id": "tornillos-drywall", "nombre": "Tornillos drywall", "categoria": "tornilleria-y-fijacion", "subcategoria": "tornillos", "descripcion": "Tornillos para fijación de láminas de drywall a perfilería.", "aplicaciones": ["Construcción liviana en seco"] },
-    { "id": "chazos-plasticos", "nombre": "Chazos plásticos", "categoria": "tornilleria-y-fijacion", "subcategoria": "anclajes-y-fijacion", "descripcion": "Anclajes plásticos para fijación en muros y superficies de mampostería.", "aplicaciones": ["Fijación en muros"] },
-    { "id": "chazos-metalicos", "nombre": "Chazos metálicos", "categoria": "tornilleria-y-fijacion", "subcategoria": "anclajes-y-fijacion", "descripcion": "Anclajes metálicos para fijaciones que requieren mayor resistencia.", "aplicaciones": ["Fijación de soportes y equipos"] },
-    { "id": "clavos", "nombre": "Clavos", "categoria": "tornilleria-y-fijacion", "subcategoria": "anclajes-y-fijacion", "descripcion": "Clavos para obra y carpintería.", "aplicaciones": ["Obra y carpintería"] },
-    { "id": "elementos-de-fijacion", "nombre": "Elementos de fijación", "categoria": "tornilleria-y-fijacion", "subcategoria": "anclajes-y-fijacion", "descripcion": "Otros elementos de fijación para montaje y mantenimiento.", "aplicaciones": ["Montaje y mantenimiento"] },
-    { "id": "cinta-de-teflon", "nombre": "Cintas de teflón", "categoria": "tornilleria-y-fijacion", "subcategoria": "accesorios-de-instalacion", "descripcion": "Cinta selladora para uniones roscadas.", "aplicaciones": ["Sellado de roscas en redes de tubería"] },
-    { "id": "otros-accesorios-instalacion", "nombre": "Otros accesorios de instalación", "categoria": "tornilleria-y-fijacion", "subcategoria": "accesorios-de-instalacion", "descripcion": "Accesorios complementarios para instalaciones. Consulte disponibilidad con un asesor.", "aplicaciones": ["Instalación y mantenimiento"] },
-
-    { "id": "rodamientos", "nombre": "Rodamientos", "categoria": "rodamientos-y-transmision", "subcategoria": "rodamientos", "descripcion": "Rodamientos para maquinaria y equipos. Indique la referencia o las medidas para verificar disponibilidad.", "aplicaciones": ["Maquinaria industrial", "Equipos rotativos"] },
-    { "id": "chumaceras", "nombre": "Chumaceras", "categoria": "rodamientos-y-transmision", "subcategoria": "chumaceras", "descripcion": "Chumaceras para soporte de ejes en maquinaria y transportadores.", "aplicaciones": ["Soporte de ejes", "Transportadores y maquinaria"] },
-
-    { "id": "accesorios-galvanizados", "nombre": "Accesorios galvanizados", "categoria": "accesorios-para-tuberia", "subcategoria": "por-material", "descripcion": "Accesorios para redes de tubería galvanizada.", "aplicaciones": ["Redes de agua", "Redes de tubería galvanizada"] },
-    { "id": "accesorios-acero-al-carbon", "nombre": "Accesorios de acero al carbón", "categoria": "accesorios-para-tuberia", "subcategoria": "por-material", "descripcion": "Accesorios para redes de tubería de acero al carbón.", "aplicaciones": ["Redes industriales"] },
-    { "id": "accesorios-inoxidables", "nombre": "Accesorios inoxidables", "categoria": "accesorios-para-tuberia", "subcategoria": "por-material", "descripcion": "Accesorios de acero inoxidable para redes de tubería.", "aplicaciones": ["Procesos industriales", "Ambientes corrosivos"] },
-    { "id": "codos", "nombre": "Codos", "categoria": "accesorios-para-tuberia", "subcategoria": "por-tipo-de-conexion", "descripcion": "Codos para cambios de dirección en redes de tubería. Consulte material, ángulo y diámetro.", "aplicaciones": ["Cambios de dirección en redes"] },
-    { "id": "tees", "nombre": "Tees", "categoria": "accesorios-para-tuberia", "subcategoria": "por-tipo-de-conexion", "descripcion": "Tees para derivaciones en redes de tubería.", "aplicaciones": ["Derivaciones de redes"] },
-    { "id": "uniones", "nombre": "Uniones", "categoria": "accesorios-para-tuberia", "subcategoria": "por-tipo-de-conexion", "descripcion": "Uniones para el acople de tramos de tubería.", "aplicaciones": ["Acople y desmontaje de tramos"] },
-    { "id": "semicodos", "nombre": "Semicodos", "categoria": "accesorios-para-tuberia", "subcategoria": "por-tipo-de-conexion", "descripcion": "Semicodos para cambios de dirección de menor ángulo.", "aplicaciones": ["Cambios de dirección en redes"] },
-    { "id": "reducciones-y-conexiones", "nombre": "Reducciones y demás conexiones", "categoria": "accesorios-para-tuberia", "subcategoria": "por-tipo-de-conexion", "descripcion": "Reducciones y otras conexiones confirmadas en inventario. Consulte con un asesor.", "aplicaciones": ["Cambios de diámetro", "Conexiones especiales"] }
   ]
 }

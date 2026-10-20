@@ -19,7 +19,7 @@ export default function contacto(ctx) {
   const necesidades = [
     { icono: 'documento', titulo: 'Cotizar productos o servicios', texto: 'Envíe su lista con medidas y cantidades. Le respondemos con precios y disponibilidad.', href: rutas.cotizar, accion: 'Solicitar cotización' },
     { icono: 'whatsapp', titulo: 'Hacer una pregunta rápida', texto: 'Escríbanos por WhatsApp y un asesor le atiende.', href: wa, accion: 'Escribir por WhatsApp', externo: true },
-    { icono: 'buscar', titulo: 'Buscar un producto', texto: 'Revise nuestras líneas de producto y agréguelas a su solicitud.', href: rutas.productos, accion: 'Ver catálogo' },
+    { icono: 'buscar', titulo: 'Buscar un producto', texto: 'Revise nuestro catálogo y agregue productos a su solicitud.', href: rutas.productos, accion: 'Ver catálogo' },
     { icono: 'info', titulo: 'Resolver una duda', texto: 'Precios, servicios, horario y cómo recoger su pedido.', href: rutas.faq, accion: 'Preguntas frecuentes' },
   ];
 
