@@ -90,7 +90,7 @@
   ],
   "formularios": {
     "_nota": "URL de la aplicación web de Google Apps Script (docs/solicitudes.gs) que guarda cada solicitud en la hoja privada «Solicitudes página web» y la envía por correo. No es un secreto. Guía: docs/solicitudes-google.md.",
-    "endpoint": "https://script.google.com/macros/s/AKfycbzTsISxZhivyVZTNHyk8eL6279USl7kI6Mn-StVAecsDLKxUyoZ6Ig6ssWT0R-BYVg_yw/exec"
+    "endpoint": "https://script.google.com/macros/s/AKfycbwmno63Tswq6_fKbw0p-wukHbhF1HiAxRplr7ruKunAv-fkXKU3amx1hoNeKPEWQ92h/exec"
   },
   "pendientes": [
     "Fotografía de la fachada: confirmar que corresponde a la apariencia actual de la sede (el sitio anterior tenía dos versiones).",
