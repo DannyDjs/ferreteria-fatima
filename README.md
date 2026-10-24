@@ -6,8 +6,8 @@ cotización por formulario o WhatsApp, contacto, preguntas frecuentes y polític
 
 - **Stack:** HTML, CSS y JavaScript sin framework. Un generador estático propio en Node.js
   (`scripts/build.js`, **sin dependencias**) arma las páginas desde plantillas y datos JSON.
-- **Resultado:** 70 páginas HTML estáticas en `dist/` con URLs limpias (`/productos/tuberias/`).
-- **Formularios:** se envían a Formspree (servicio externo); alternativa por WhatsApp con mensaje organizado.
+- **Resultado:** páginas HTML estáticas en `dist/` (una por producto de la hoja; 289 en total hoy) con URLs limpias (`/productos/gas-y-glp/`).
+- **Formularios:** se envían a Google Apps Script (hoja privada + correo); alternativa por WhatsApp con mensaje organizado.
 - **Publicación:** cualquier hosting estático. Configurado para Cloudflare Workers (`wrangler.jsonc`).
 
 ---
@@ -30,8 +30,8 @@ cotización por formulario o WhatsApp, contacto, preguntas frecuentes y polític
 | `/` | Inicio: hero con foto de la sede, buscador, líneas de negocio, categorías, servicios, beneficios, proceso de cotización y ubicación |
 | `/nosotros/` | Presentación, actividad comercial, compromiso con el cliente |
 | `/productos/` | Catálogo completo con buscador, categorías y carga progresiva |
-| `/productos/<categoría>/` | 9 páginas de categoría con filtro por subcategoría |
-| `/productos/<categoría>/<producto>/` | 52 fichas de línea de producto |
+| `/productos/<categoría>/` | 12 páginas de categoría con filtro por subcategoría |
+| `/productos/<categoría>/<producto>/` | Una ficha por producto publicado en la hoja (268 hoy) |
 | `/servicios/` | Roscado, ranurado y corte (anclas `#roscado-de-tuberia`, `#ranurado-de-tuberia`, `#corte-de-materiales`) |
 | `/cotizar/` | Formulario de cotización con varios productos |
 | `/contacto/` | WhatsApp y llamadas, correo, dirección, guía «¿Qué necesita?», horario y mapa bajo demanda (sin formulario: el único formulario del sitio es `/cotizar/`) |
@@ -92,7 +92,7 @@ Otros comandos:
 |---|---|
 | `npm run build` | Genera la versión de producción en `dist/` y lista los datos pendientes. |
 | `npm start` | Compila producción y la sirve en <http://localhost:5050> (como quedará publicada). |
-| `npm test` | Compila y ejecuta las 26 pruebas automáticas. |
+| `npm test` | Compila y ejecuta las pruebas automáticas. |
 | `npm run deploy` | Compila y publica en Cloudflare (requiere `wrangler login`, ver §9). |
 
 > Abrir `dist/index.html` con doble clic **no** es recomendable: las rutas son absolutas (`/assets/...`)
@@ -140,16 +140,16 @@ configurarla y usarla: **[docs/catalogo-google-sheets.md](docs/catalogo-google-s
 | **Google Maps** | Se carga solo si la persona pulsa «Ver mapa aquí» (privacidad y rendimiento). | `empresa.json → mapaEmbed` y `mapaUrl`. |
 | **Facebook** | Enlace en el pie. | `empresa.json → redes.facebook`. |
 
-Formspree recibe los campos ya organizados: `codigo_solicitud` (formato `SOL-AAMMDD-XXXX`, también visible
+Apps Script recibe los campos ya organizados: `codigo_solicitud` (formato `SOL-AAMMDD-XXXX`, también visible
 para el cliente), datos del solicitante, `productos` (una línea por producto con referencia, cantidad y unidad),
 descripción, observaciones y la constancia de autorización de datos con fecha. El campo `email` queda como
 dirección de respuesta.
 
 ## 7. Seguridad y privacidad (controles implementados)
 
-- **Sin secretos en el código**: el sitio no usa claves API. El endpoint de Formspree es público por diseño.
+- **Sin secretos en el código**: el sitio no usa claves API. La URL de Apps Script es pública por diseño.
 - **CSP estricta** en `public/_headers`: solo scripts y estilos propios, sin código en línea, `connect-src`
-  limitado a Formspree y `frame-src` limitado a Google (mapa). También `nosniff`, `X-Frame-Options: DENY`,
+  limitado a Google Apps Script y `frame-src` limitado a Google (mapa). También `nosniff`, `X-Frame-Options: DENY`,
   `Referrer-Policy`, `Permissions-Policy`, HSTS y `COOP`.
 - **Plantillas con escape automático** (`src/templates/html.js`): todo texto de los JSON se escapa al generar HTML.
 - **Formularios**: validación en el navegador con mensajes por campo y resumen accesible, límites de longitud,
@@ -159,20 +159,20 @@ dirección de respuesta.
   `localStorage` (con alternativa en memoria si está bloqueado). No hay cookies ni analítica.
 - `dist/` publica solo archivos públicos (los logos originales y los archivos de configuración no salen).
 
-**Limitaciones conocidas:** la validación del lado del servidor y el filtrado de spam dependen de Formspree
-(no hay backend propio). Si el spam aumenta, active reCAPTCHA o Turnstile en Formspree y agregue su dominio a la CSP.
+**Limitaciones conocidas:** la validación del lado del servidor y el filtrado de spam los hace el Apps Script
+(trampa y 60 correos por hora; no hay backend propio). Si el spam aumenta, agregue una verificación «no soy un robot» (p. ej. Turnstile) y su dominio a la CSP.
 La política de privacidad es un **documento base que no ha sido revisado por un abogado**: debe validarse
 antes de publicar el sitio y completarse con un correo para el ejercicio de derechos.
 Ningún sitio es completamente seguro; estos controles reducen los riesgos habituales de un sitio estático.
 
 ## 8. Pruebas realizadas y resultados reales
 
-### Automáticas (`npm test`): 26 pruebas, 26 aprobadas
+### Automáticas (`npm test`)
 
 - **Funciones** (`tests/lib.test.js`): validación de teléfono, correo, NIT y cantidad; codificación del mensaje
   y del enlace de WhatsApp; búsqueda sin tildes ni plurales y su orden por relevancia; formato del código de solicitud.
 - **Sitio generado** (`tests/sitio.test.js`):
-  - Las 70 páginas existen y cada una tiene un solo `h1`, título y descripción únicos y `canonical` correcto.
+  - Todas las páginas existen y cada una tiene un solo `h1`, título y descripción únicos y `canonical` correcto.
   - Todos los enlaces, imágenes y anclas internas existen; no hay enlaces `#` vacíos.
   - Todas las imágenes tienen `alt` y dimensiones, y todos los campos de formulario tienen etiqueta.
   - No hay código en línea (compatibilidad con la CSP), el JSON-LD es válido y no contiene calificaciones ni correos inventados.
@@ -275,14 +275,14 @@ Directorio de publicación `dist`, comando `node scripts/build.js`. Ambos leen `
 Se listan en `src/data/empresa.json → "pendientes"`, se imprimen en cada compilación y, en `npm run dev`,
 aparecen como recuadros amarillos en la página correspondiente:
 
-1. Correo: se usa provisionalmente dannyramirezch73@gmail.com; se cambia en `src/data/empresa.json → "correo"`.
+1. (Resuelto) Correo: facturacionferrefatima@gmail.com (`src/data/empresa.json → "correo"`).
 2. (Resuelto) Teléfono fijo retirado: llamadas y WhatsApp al 315 486 4439.
 3. (Resuelto) Horario de festivos: 8:00 a. m. – 12:00 m.
 4. Mapa: confirmar que la ubicación incrustada señala la sede exacta.
 5. Foto de la fachada: confirmar que corresponde al aspecto actual. El sitio anterior tenía una versión
    sin letrero y otra con letrero; se usa la versión con letrero.
-6. Formspree: confirmar la cuenta y el correo de destino. Hacer un envío real de prueba.
-7. Años de experiencia: el sitio anterior decía «más de 20 años»; no se publica hasta confirmarlo.
+6. Solicitudes (Apps Script): hacer un envío real de prueba y confirmar que llega a la hoja y al correo.
+7. (Resuelto) Fundación: junio de 1984 (`empresa.json → anioFundacion`).
 8. NIT 5.203.413-9 y razón social del responsable del tratamiento de datos (para la política).
 9. Catálogo: referencias, marcas, medidas, unidades y fotos reales de cada línea; denominación exacta de «Tubería PE-LP».
 10. Servicios: capacidades técnicas ya cargadas en `servicios.json`; faltan tiempos de entrega y fotos reales (campo `"imagen"`). No se hacen entregas a domicilio.
@@ -296,7 +296,7 @@ aparecen como recuadros amarillos en la página correspondiente:
 - **Teclado y lectores de pantalla:** foco visible, `aria-current` en la navegación, regiones `aria-live` para los resultados y errores asociados con `aria-describedby`.
 - **Contraste:** verificado; los botones usan el tono `#007A66` sobre blanco (5,3:1).
 - **Movimiento reducido:** se respeta `prefers-reduced-motion`.
-- **Fuentes:** propias, en WOFF2, con `font-display: swap` y precarga de los dos pesos principales.
+- **Fuentes:** propias, en WOFF2, con `font-display: optional` (sin saltos de diseño) y precarga de los pesos usados en la primera pantalla.
 - **Imágenes:** WebP con `srcset`, dimensiones explícitas (sin saltos de diseño), carga diferida fuera de la primera pantalla y prioridad alta para la foto principal.
 - **CSS y JavaScript:** un solo CSS minificado (9,7 KB comprimido) y módulos JS pequeños sin librerías.
 

@@ -64,16 +64,20 @@ export function generarCodigo(fecha = new Date()) {
   return `SOL-${f}-${aleatorio}`;
 }
 
-/** Antispam básico: campo trampa lleno o envío en menos de 3 segundos desde que cargó la página. */
+/**
+ * Antispam básico. 'trampa': el campo oculto está lleno (robot seguro).
+ * 'rapido': envío en menos de 3 segundos; puede ser una persona con autocompletado, así que se le pide repetir.
+ */
 export function pareceSpam(form, cargadoEn) {
   const trampa = form.querySelector('[name="_gotcha"]');
-  return Boolean(trampa && trampa.value) || Date.now() - cargadoEn < 3000;
+  if (trampa && trampa.value) return 'trampa';
+  return Date.now() - cargadoEn < 3000 ? 'rapido' : '';
 }
 
 /**
  * Envía los datos al servicio que recibe las solicitudes y lanza un error legible si falla.
  * Google Apps Script (script.google.com): JSON como texto plano (evita la consulta previa CORS que Apps Script
- * no atiende) y respuesta { ok, error }. Formspree: JSON normal.
+ * no atiende) y respuesta { ok, error }. Otros servicios: JSON normal.
  */
 export async function enviar(endpoint, datos, { tiempoMaximo = 20000 } = {}) {
   const appsScript = /^https:\/\/script\.google\.com\//.test(endpoint);

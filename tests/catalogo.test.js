@@ -41,6 +41,12 @@ test('procesarCsv: arma productos y subcategorías, omite filas inválidas o no 
   assert.match(avisos.join(' '), /repetido/);
 });
 
+test('procesarCsv: la columna opcional «Dirección web» fija el ID aunque cambie el nombre', () => {
+  const csv = 'Categoría,Producto,Dirección web\nGas y GLP,Regulador Unkar R30 (nuevo nombre),Regulador Unkar R30\nGas y GLP,Válvula,\n';
+  const { productos } = procesarCsv(csv, categorias);
+  assert.deepEqual(productos.map((p) => p.id), ['regulador-unkar-r30', 'valvula']);
+});
+
 test('procesarCsv: exige las columnas Categoría y Producto', () => {
   assert.throws(() => procesarCsv('Nombre del producto,Precio\nA,1', categorias), /Categoría/);
 });

@@ -143,7 +143,7 @@ function paginaProducto(ctx, p) {
           ${(p.especificaciones || []).map((s) => filaDato(s.etiqueta, s.valor))}
         </dl>
         <div class="product-detail__actions">
-          <a class="btn btn--primary btn--lg" href="${rutas.cotizarProducto(p.id)}" data-cotizar-ahora="${p.id}" data-nombre="${p.nombre}" data-referencia="${p.referencia || ''}">${icono('documento')}Solicitar cotización</a>
+          <a class="btn btn--primary btn--lg" href="${rutas.cotizarProducto(p.id)}">${icono('documento')}Solicitar cotización</a>
           <a class="btn btn--whatsapp btn--lg" href="${enlaceWhatsapp(e.whatsapp.numero, mensajeWa)}" target="_blank" rel="noopener">${icono('whatsapp')}Consultar disponibilidad</a>
           <button type="button" class="btn btn--outline" data-agregar-cotizacion="${p.id}" data-nombre="${p.nombre}" data-referencia="${p.referencia || ''}" aria-pressed="false">
             <span class="when-off">${icono('mas')}Agregar a mi solicitud</span><span class="when-on">${icono('check')}Agregado a su solicitud</span>

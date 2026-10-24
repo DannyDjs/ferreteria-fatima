@@ -100,7 +100,7 @@ function encabezado(ctx, pagina) {
 <div class="topbar">
   <div class="container topbar__inner">
     <p class="topbar__item">${icono('ubicacion')}<span>${e.direccion.calle}, ${e.direccion.barrio} · ${e.direccion.ciudad}, ${e.direccion.departamento}</span></p>
-    <p class="topbar__item topbar__item--horario">${icono('reloj')}<span>Lun a vie 8:00–12:00 y 14:00–18:00 · Sáb 8:00–13:00 · Festivos 8:00–12:00</span></p>
+    <p class="topbar__item topbar__item--horario">${icono('reloj')}<span>${e.horarioCorto}</span></p>
     <p class="topbar__item topbar__item--end"><a href="tel:${e.telefonos.celular.e164}">${icono('telefono')}<span>${e.telefonos.celular.visible}</span></a></p>
   </div>
 </div>
@@ -112,7 +112,7 @@ function encabezado(ctx, pagina) {
       <div class="nav__mobile-extra">
         <a class="btn btn--primary btn--block" href="${rutas.cotizar}">${icono('documento')}Solicitar cotización</a>
         <a class="btn btn--whatsapp btn--block" href="${enlaceWhatsapp(e.whatsapp.numero, e.whatsapp.mensajeInicial)}" target="_blank" rel="noopener">${icono('whatsapp')}WhatsApp ${e.whatsapp.visible}</a>
-        <p class="nav__mobile-info">${icono('reloj')}Lun a vie 8:00–12:00 y 14:00–18:00<br>Sáb 8:00–13:00 · Festivos 8:00–12:00</p>
+        <p class="nav__mobile-info">${icono('reloj')}${e.horarioCorto}</p>
       </div>
     </nav>
     <div class="site-header__actions">

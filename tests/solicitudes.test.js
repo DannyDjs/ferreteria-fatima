@@ -23,6 +23,7 @@ function entorno({ correoFalla = false } = {}) {
     LockService: { getScriptLock: () => ({ waitLock() {}, releaseLock() {} }) },
     Utilities: { getUuid: () => 'abcd1234-0000' },
     ContentService: { MimeType: { JSON: 'json' }, createTextOutput: (t) => ({ setMimeType: () => JSON.parse(t) }) },
+    HtmlService: { createHtmlOutput: (h) => ({ setTitle: () => ({ html: h }) }) },
   };
   vm.createContext(ctx);
   vm.runInContext(codigoGs, ctx);
@@ -79,15 +80,18 @@ test('envío sin JavaScript (formulario normal) también se registra', () => {
     razon_social: 'Taller', contacto: 'Ana', telefono: '3154864439', email: 'a@b.co', consentimiento: 'Sí',
     producto_1: 'Codos', cantidad_1: '2', unidad_1: 'Unidad', producto_2: 'Tes', referencia_2: '1/2"', cantidad_2: '1', unidad_2: 'Unidad',
   } });
-  assert.equal(r.ok, true);
+  assert.match(r.html, /Recibimos su solicitud \(código SOL-/, 'sin JavaScript se responde una página, no JSON');
   assert.match(filas[1][8], /1\. Codos \| Cantidad: 2 Unidad\n2\. Tes \| Ref\.\/medida: 1\/2" \| Cantidad: 1 Unidad/);
   assert.match(filas[1][1], /^SOL-/);
 });
 
-test('limita la cantidad de solicitudes por hora', () => {
-  const { ctx } = entorno();
+test('sobre el límite por hora: guarda la solicitud pero no envía más correos', () => {
+  const { ctx, filas, correos } = entorno();
   for (let i = 0; i < 60; i++) assert.equal(ctx.doPost(post(valida)).ok, true);
-  assert.equal(ctx.doPost(post(valida)).ok, false);
+  assert.equal(ctx.doPost(post(valida)).ok, true, 'el cliente no pierde su solicitud');
+  assert.equal(filas.length, 62, 'encabezado + 61 solicitudes');
+  assert.equal(correos.length, 60);
+  assert.match(filas[61][12], /sin correo/);
 });
 
 test('enviar() a Apps Script: texto plano y error legible si el script rechaza', async () => {

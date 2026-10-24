@@ -40,6 +40,7 @@ const COLUMNAS = {
   categoria: 'categoria', subcategoria: 'subcategoria', producto: 'nombre', nombre: 'nombre',
   referencia: 'referencia', marca: 'marca', medidaunidad: 'unidad', medida: 'unidad', unidad: 'unidad',
   descripcion: 'descripcion', imagen: 'imagen', foto: 'imagen', publicar: 'publicar',
+  id: 'id', direccionweb: 'id', // opcional: fija la dirección del producto aunque cambie el nombre
 };
 const MAX_FILAS = 5000;
 const DESCRIPCION_POR_DEFECTO = 'Consulte medidas, referencias y disponibilidad con un asesor.';
@@ -76,7 +77,7 @@ export function procesarCsv(texto, categoriasBase) {
     let sub = cat.subcategorias.find((s) => clave(s.nombre) === clave(subNombre));
     if (!sub) { sub = { slug: slug(subNombre) || 'general', nombre: subNombre }; cat.subcategorias.push(sub); }
 
-    let id = slug(r.nombre) || `producto-${n}`;
+    let id = slug(r.id || r.nombre) || `producto-${n}`;
     if (ids.has(id)) { avisos.push(`Fila ${n}: «${r.nombre}» está repetido; se publica con otra dirección.`); id = `${id}-${n}`; }
     ids.add(id);
 

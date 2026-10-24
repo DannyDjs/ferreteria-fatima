@@ -58,6 +58,7 @@ Cada **fila es un producto**. Columnas:
 | **Imagen** | No | Enlace `https://` a una foto (JPG, PNG o WebP, máximo 5 MB). Sirve un enlace de Google Drive compartido como «Cualquier persona con el enlace». |
 | **Publicar** | No | **No** = el producto queda en la hoja pero no aparece en la página. Vacío o **Sí** = se publica. |
 | **Notas internas** | No | Para el equipo. No se muestra en la página (pero ver el aviso del paso A.2). |
+| **Dirección web** | No | Columna opcional (se puede agregar al final). La dirección de cada producto sale de su nombre, así que **si cambia el nombre, cambia la dirección** y dejan de servir los enlaces compartidos. Para conservarla, escriba aquí el nombre anterior antes de cambiar el de «Producto». |
 
 **Categorías válidas** (escribirlas tal cual; mayúsculas y tildes no importan):
 

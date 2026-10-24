@@ -12,38 +12,48 @@
 const HOJA = 'Solicitudes';
 const COLUMNAS = ['Fecha', 'Código', 'Nombre o razón social', 'NIT / documento', 'Contacto', 'Teléfono', 'Correo',
   'Ciudad', 'Productos', 'Descripción', 'Observaciones', 'Autoriza datos', 'Estado'];
-const MAX_POR_HORA = 60; // freno contra envíos masivos (spam)
+const MAX_POR_HORA = 60; // correos por hora; por encima se guarda la solicitud sin enviar correo (protege la cuota de Gmail)
 
 function doPost(e) {
+  const formulario = esFormulario(e);
   try {
     const d = leerDatos(e);
-    if (d._gotcha) return responder({ ok: true }); // trampa anti-spam llena: se finge éxito y no se guarda nada
+    if (d._gotcha) return responder({ ok: true }, formulario); // trampa anti-spam llena: se finge éxito y no se guarda nada
     const error = validar(d);
-    if (error) return responder({ ok: false, error: error });
-    if (!dentroDelLimite()) return responder({ ok: false, error: 'Hay demasiadas solicitudes en este momento. Intente en unos minutos o escríbanos por WhatsApp.' });
+    if (error) return responder({ ok: false, error: error }, formulario);
 
+    // Nunca se rechaza a un cliente por el límite: la solicitud se guarda igual y solo se omite el correo.
+    const conCorreo = dentroDelLimite();
     const fila = [new Date(), d.codigo_solicitud, d.razon_social, d.nit_documento, d.contacto, d.telefono, d.email,
-      d.ciudad, d.productos, d.descripcion, d.observaciones, d.autoriza_tratamiento_datos, 'Nueva'];
+      d.ciudad, d.productos, d.descripcion, d.observaciones, d.autoriza_tratamiento_datos,
+      conCorreo ? 'Nueva' : 'Nueva (sin correo: límite por hora)'];
     hoja().appendRow(fila.map(celdaSegura));
-    try {
-      enviarCorreo(d);
-    } catch (err) {
-      // La solicitud ya quedó guardada en la hoja; no se reporta error al cliente para que no la envíe dos veces.
-      console.error('No se pudo enviar el correo: ' + err);
+    if (conCorreo) {
+      try {
+        enviarCorreo(d);
+      } catch (err) {
+        // La solicitud ya quedó guardada en la hoja; no se reporta error al cliente para que no la envíe dos veces.
+        console.error('No se pudo enviar el correo: ' + err);
+      }
     }
-    return responder({ ok: true, codigo: d.codigo_solicitud });
+    return responder({ ok: true, codigo: d.codigo_solicitud }, formulario);
   } catch (err) {
     console.error(err);
-    return responder({ ok: false, error: 'No se pudo registrar la solicitud. Intente de nuevo o escríbanos por WhatsApp.' });
+    return responder({ ok: false, error: 'No se pudo registrar la solicitud. Intente de nuevo o escríbanos por WhatsApp.' }, formulario);
   }
+}
+
+/** true si llegó como formulario normal (navegador sin JavaScript) y no como JSON desde la página. */
+function esFormulario(e) {
+  const contenido = e && e.postData && e.postData.contents;
+  return !(contenido && e.postData.type !== 'application/x-www-form-urlencoded');
 }
 
 /** La página envía JSON como texto plano; sin JavaScript llega como formulario normal (campos producto_1, cantidad_1…). */
 function leerDatos(e) {
   let d = {};
-  const contenido = e && e.postData && e.postData.contents;
-  if (contenido && e.postData.type !== 'application/x-www-form-urlencoded') {
-    d = JSON.parse(contenido);
+  if (!esFormulario(e)) {
+    d = JSON.parse(e.postData.contents);
   } else {
     const p = (e && e.parameter) || {};
     const items = [];
@@ -138,6 +148,18 @@ function enviarCorreo(d) {
   });
 }
 
-function responder(objeto) {
+/** JSON para la página; sin JavaScript, una página legible en lugar de texto JSON. */
+function responder(objeto, formulario) {
+  if (formulario) {
+    const texto = objeto.ok
+      ? 'Recibimos su solicitud' + (objeto.codigo ? ' (código ' + objeto.codigo + ')' : '') + '. Un asesor le responderá en el horario de atención.'
+      : 'No pudimos registrar su solicitud: ' + objeto.error + ' Vuelva atrás para corregirla.';
+    return HtmlService.createHtmlOutput('<p style="font:18px sans-serif;max-width:40em;margin:2em auto">' + escaparHtml(texto) + '</p>')
+      .setTitle('Ferretería Fátima');
+  }
   return ContentService.createTextOutput(JSON.stringify(objeto)).setMimeType(ContentService.MimeType.JSON);
+}
+
+function escaparHtml(s) {
+  return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; });
 }

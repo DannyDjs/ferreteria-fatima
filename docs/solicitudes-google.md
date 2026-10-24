@@ -67,7 +67,11 @@ Si se modifica el código, publique la nueva versión **sin cambiar la URL**:
 ## Protecciones incluidas
 
 - **Validación en Google:** los datos se validan de nuevo al llegar (campos obligatorios, correo, teléfono, longitudes y autorización de datos).
-- **Spam:** una trampa contra robots y un máximo de 60 solicitudes por hora.
+- **Spam:** una trampa contra robots y un máximo de 60 correos por hora. Por encima de ese número la
+  solicitud **se guarda igual** en la hoja con el estado «Nueva (sin correo: límite por hora)»; revise la hoja
+  si sospecha que llegaron muchas.
+- **Sin JavaScript:** si el navegador del cliente no ejecuta JavaScript, el formulario se envía igual y Google
+  muestra una página con el mensaje de confirmación.
 - **Hoja:** los textos que empiezan por `=`, `+`, `-` o `@` se guardan como texto, no como fórmulas.
 
 Es una protección básica: si llegan muchas solicitudes falsas, se puede agregar una verificación

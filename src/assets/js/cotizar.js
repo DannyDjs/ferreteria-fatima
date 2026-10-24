@@ -150,9 +150,17 @@ if (form) {
     if (!validar({ correoObligatorio: true })) return;
     const d = recolectar();
 
-    if (pareceSpam(form, cargadoEn)) {
+    const spam = pareceSpam(form, cargadoEn);
+    if (spam === 'trampa') {
       // No se envía nada; se muestra el mismo mensaje de éxito para no orientar a los robots.
       mostrarExito(d);
+      return;
+    }
+    if (spam === 'rapido') {
+      // Una persona real no pierde la solicitud: solo vuelve a pulsar Enviar.
+      const p = document.createElement('p');
+      p.textContent = 'Revise que sus datos estén completos y vuelva a pulsar «Enviar solicitud».';
+      mostrarAlerta(form, [p]);
       return;
     }
 

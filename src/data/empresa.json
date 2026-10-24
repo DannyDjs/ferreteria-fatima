@@ -4,7 +4,7 @@
   "eslogan": "Soluciones en ferretería e industria",
   "sitioUrl": "https://ferreteriafatima.com",
   "nit": "5.203.413-9",
-  "anioFundacion": 1942,
+  "anioFundacion": 1984,
   "fundador": "Edgar Arteaga",
   "historia": "Ferretería Fátima nació por iniciativa de Edgar Arteaga, con una idea sencilla: que los vecinos, maestros de obra y trabajadores de Pasto encontraran cerca los materiales que necesitaban para construir y reparar, con una atención honesta y de confianza.",
   "trayectoria": "Con los años, la ferretería creció junto con sus clientes. A la atención del barrio se sumaron empresas, talleres y contratistas de la región, y a la venta de materiales se sumaron líneas industriales y servicios de roscado, ranurado y corte de tubería. Hoy seguimos trabajando con la misma cercanía con la que empezamos.",
@@ -35,12 +35,14 @@
     "visible": "315 486 4439",
     "mensajeInicial": "Hola, Ferretería Fátima. Quisiera información sobre sus productos."
   },
-  "correo": "ferreteriafatima@gmail.com",
+  "correo": "facturacionferrefatima@gmail.com",
   "_mostrarPrecio": "true = muestra la fila 'Precio' (Consultar precio) en las fichas de producto; false = la oculta.",
   "mostrarPrecio": false,
   "redes": {
     "facebook": "https://www.facebook.com/share/1AMtJd7b8d/"
   },
+  "_horarioCorto": "Versión corta del horario para la barra superior y el menú móvil. Si cambia 'horario', cámbiela también.",
+  "horarioCorto": "Lun a vie 8:00–12:00 y 14:00–18:00 · Sáb 8:00–13:00 · Festivos 8:00–12:00",
   "horario": [
     {
       "dias": "Lunes a viernes",
@@ -94,11 +96,9 @@
   },
   "pendientes": [
     "Fotografía de la fachada: confirmar que corresponde a la apariencia actual de la sede (el sitio anterior tenía dos versiones).",
-    "Años de experiencia: el sitio anterior decía 'más de 20 años'; no se publica hasta confirmarlo.",
     "NIT 5.203.413-9: tomado de la plantilla de cotización; confirmar razón social del responsable del tratamiento de datos.",
     "Catálogo: se carga desde la hoja (Google Sheets). Hay productos con «Publicar: No» porque el documento los marcó como pendientes de identificar; confirmarlos y faltan fotos reales.",
     "Dominio ferreteriafatima.com: confirmar que es el dominio definitivo (se usa en canonical, sitemap y datos estructurados).",
-    "Correo: se usa provisionalmente dannyramirezch73@gmail.com; cambiarlo en empresa.json → \"correo\" cuando exista el correo de la empresa.",
     "Servicios: falta confirmar tiempos de entrega; reemplazar las fotos genéricas de roscado, ranurado y corte por fotos reales del taller (servicios.json).",
     "Homenaje: confirmar con la familia que aprueba la frase publicada en Nosotros."
   ],
