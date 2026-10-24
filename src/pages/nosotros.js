@@ -21,7 +21,7 @@ ${cabeceraPagina({
   <div class="container about">
     <div class="about__text">
       ${encabezadoSeccion({ eyebrow: 'Quiénes somos', titulo: 'Un proveedor cercano para la industria y la construcción', id: 'quienes-titulo' })}
-      <p>${e.anioFundacion ? `Fundada en ${e.anioFundacion}, Ferretería Fátima atiende` : 'Atendemos'} desde nuestra sede en la ${e.direccion.calle}, en el barrio ${e.direccion.barrio}, a empresas, talleres, contratistas, instaladores y clientes particulares que necesitan materiales confiables para sus proyectos.</p>
+      <p>${e.anioFundacion ? `Fundada en ${e.mesFundacion ? `${e.mesFundacion} de ` : ''}${e.anioFundacion}, Ferretería Fátima atiende` : 'Atendemos'} desde nuestra sede en la ${e.direccion.calle}, en el barrio ${e.direccion.barrio}, a empresas, talleres, contratistas, instaladores y clientes particulares que necesitan materiales confiables para sus proyectos.</p>
       <p>Nuestro trabajo combina dos cosas: tener a mano las líneas de producto que pide la industria —tubería, válvulas, accesorios, aceros y metales, herramientas y fijación— y preparar ese material con servicios de roscado, ranurado y corte.</p>
       ${e.historia ? html`<h3 class="about__subtitulo">Nuestra historia</h3><p>${e.historia}</p>` : ''}
       ${e.trayectoria ? html`<p>${e.trayectoria}</p>` : ''}

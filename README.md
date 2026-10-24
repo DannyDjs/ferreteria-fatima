@@ -162,7 +162,7 @@ dirección de respuesta.
 **Limitaciones conocidas:** la validación del lado del servidor y el filtrado de spam los hace el Apps Script
 (trampa y 60 correos por hora; no hay backend propio). Si el spam aumenta, agregue una verificación «no soy un robot» (p. ej. Turnstile) y su dominio a la CSP.
 La política de privacidad es un **documento base que no ha sido revisado por un abogado**: debe validarse
-antes de publicar el sitio y completarse con un correo para el ejercicio de derechos.
+antes de publicar el sitio.
 Ningún sitio es completamente seguro; estos controles reducen los riesgos habituales de un sitio estático.
 
 ## 8. Pruebas realizadas y resultados reales
@@ -278,16 +278,15 @@ aparecen como recuadros amarillos en la página correspondiente:
 1. (Resuelto) Correo: facturacionferrefatima@gmail.com (`src/data/empresa.json → "correo"`).
 2. (Resuelto) Teléfono fijo retirado: llamadas y WhatsApp al 315 486 4439.
 3. (Resuelto) Horario de festivos: 8:00 a. m. – 12:00 m.
-4. Mapa: confirmar que la ubicación incrustada señala la sede exacta.
-5. Foto de la fachada: confirmar que corresponde al aspecto actual. El sitio anterior tenía una versión
-   sin letrero y otra con letrero; se usa la versión con letrero.
+4. (Resuelto) Mapa: la ubicación incrustada señala la sede exacta.
+5. (Resuelto) Foto de la fachada: corresponde al aspecto actual (versión con letrero).
 6. Solicitudes (Apps Script): hacer un envío real de prueba y confirmar que llega a la hoja y al correo.
-7. (Resuelto) Fundación: junio de 1984 (`empresa.json → anioFundacion`).
+7. (Resuelto) Fundación: junio de 1984 (`empresa.json → anioFundacion` y `mesFundacion`).
 8. NIT 5.203.413-9 y razón social del responsable del tratamiento de datos (para la política).
 9. Catálogo: referencias, marcas, medidas, unidades y fotos reales de cada línea; denominación exacta de «Tubería PE-LP».
 10. Servicios: capacidades técnicas ya cargadas en `servicios.json`; faltan tiempos de entrega y fotos reales (campo `"imagen"`). No se hacen entregas a domicilio.
 11. Dominio definitivo (`ferreteriafatima.com`), usado en canonical, sitemap y datos estructurados.
-12. Historia, misión y visión: la página Nosotros deja el espacio preparado y no inventa contenido.
+12. (Resuelto) Historia, misión, visión y homenaje al fundador (frase aprobada por la familia).
 13. Revisión jurídica de la política de privacidad.
 
 ## 11. Accesibilidad y rendimiento (resumen técnico)

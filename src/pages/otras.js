@@ -64,7 +64,7 @@ function privacidad(ctx) {
     cuerpo: html`${cabeceraPagina({ migasHtml: m.visible, eyebrow: 'Información legal', titulo: 'Política de privacidad y tratamiento de datos personales' })}
 <section class="section section--tight">
   <div class="container container--narrow prose">
-    ${pendiente(ctx, 'Documento base preparado según la Ley 1581 de 2012 y el Decreto 1074 de 2015. No ha sido revisado por un abogado: debe validarse antes de publicar. Falta un correo electrónico para el ejercicio de derechos.')}
+    ${pendiente(ctx, 'Documento base preparado según la Ley 1581 de 2012 y el Decreto 1074 de 2015. No ha sido revisado por un abogado: debe validarse antes de publicar.')}
     <p class="muted">Versión 1.0 · Vigente desde la publicación de este sitio web.</p>
 
     <h2>1. Responsable del tratamiento</h2>

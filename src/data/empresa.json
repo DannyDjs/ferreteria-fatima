@@ -5,6 +5,7 @@
   "sitioUrl": "https://ferreteriafatima.com",
   "nit": "5.203.413-9",
   "anioFundacion": 1984,
+  "mesFundacion": "junio",
   "fundador": "Edgar Arteaga",
   "historia": "Ferretería Fátima nació por iniciativa de Edgar Arteaga, con una idea sencilla: que los vecinos, maestros de obra y trabajadores de Pasto encontraran cerca los materiales que necesitaban para construir y reparar, con una atención honesta y de confianza.",
   "trayectoria": "Con los años, la ferretería creció junto con sus clientes. A la atención del barrio se sumaron empresas, talleres y contratistas de la región, y a la venta de materiales se sumaron líneas industriales y servicios de roscado, ranurado y corte de tubería. Hoy seguimos trabajando con la misma cercanía con la que empezamos.",
@@ -95,12 +96,10 @@
     "endpoint": "https://script.google.com/macros/s/AKfycbwmno63Tswq6_fKbw0p-wukHbhF1HiAxRplr7ruKunAv-fkXKU3amx1hoNeKPEWQ92h/exec"
   },
   "pendientes": [
-    "Fotografía de la fachada: confirmar que corresponde a la apariencia actual de la sede (el sitio anterior tenía dos versiones).",
     "NIT 5.203.413-9: tomado de la plantilla de cotización; confirmar razón social del responsable del tratamiento de datos.",
     "Catálogo: se carga desde la hoja (Google Sheets). Hay productos con «Publicar: No» porque el documento los marcó como pendientes de identificar; confirmarlos y faltan fotos reales.",
     "Dominio ferreteriafatima.com: confirmar que es el dominio definitivo (se usa en canonical, sitemap y datos estructurados).",
-    "Servicios: falta confirmar tiempos de entrega; reemplazar las fotos genéricas de roscado, ranurado y corte por fotos reales del taller (servicios.json).",
-    "Homenaje: confirmar con la familia que aprueba la frase publicada en Nosotros."
+    "Servicios: falta confirmar tiempos de entrega; reemplazar las fotos genéricas de roscado, ranurado y corte por fotos reales del taller (servicios.json)."
   ],
   "homenaje": {
     "_nota": "Homenaje discreto en Nosotros. Se publica solo cuando 'nombre' tiene valor. 'texto' (opcional) reemplaza la frase por defecto; escriba {nombre} donde debe ir el nombre.",
